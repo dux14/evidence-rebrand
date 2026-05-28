@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────────
+   evidence — design tokens
+   crema (80%) · noir (20%) · ev-blue (active states only)
+   ─────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Crema palette */
+  --color-crema-canvas: #FBF9F7;
+  --color-crema-surface: #F5EFE8;
+  --color-crema-muted: #EDE5DA;
+  --color-crema-border: #D4C9BB;
+  --color-crema-fg: #1A1410;
+  --color-crema-fg-2: #5A4A3A;
+  --color-crema-fg-3: #8A7A6A;
+
+  /* Noir palette */
+  --color-noir-bg: #000000;
+  --color-noir-bg-2: #0A0A0B;
+  --color-noir-fg: #FFFFFF;
+  --color-noir-fg-2: #C8C8C8;
+  --color-noir-hairline: #262626;
+
+  /* Accent — Evidence Blue */
+  --color-ev-blue: #1B3A7A;
+  --color-ev-blue-deep: #0D2D6E;
+  --color-ev-blue-ice: #9CC4FF;
+
+  /* Warm */
+  --color-warm: #8B7355;
+  --color-warm-rim: #FFB68A;
+
+  /* Type families */
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-serif: "PP Editorial New", "Cormorant Garamond", "Times New Roman", serif;
+}
+
+:root {
+  /* Easings */
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Durations */
+  --dur-slow: 900ms;
+  --dur-medium: 600ms;
+  --dur-fast: 320ms;
+  --dur-beat: 1200ms;
+
+  /* Computed (re-exposed for inline style use) */
+  --crema-canvas: var(--color-crema-canvas);
+  --crema-surface: var(--color-crema-surface);
+  --crema-fg: var(--color-crema-fg);
+  --noir-bg: var(--color-noir-bg);
+  --noir-bg-2: var(--color-noir-bg-2);
+  --noir-fg: var(--color-noir-fg);
+  --ev-blue: var(--color-ev-blue);
+}
+
+/* ───────────────────────────────────────────────────────────────
+   base
+   ─────────────────────────────────────────────────────────────── */
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background: var(--color-crema-canvas);
+  color: var(--color-crema-fg);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01" on, "cv11" on;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-crema-fg);
+  color: var(--color-crema-canvas);
+}
+
+/* Smooth scrolling baseline; per-element opt-in below */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   typographic utilities
+   ─────────────────────────────────────────────────────────────── */
+
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "ss01" on, "cv11" on, "tnum" on;
+  letter-spacing: -0.025em;
+}
+
+.font-mono-readout {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+.font-serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: lowercase;
+}
+
+/* Hero number scale */
+.hero-number {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(96px, 14vw, 160px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   noise + texture (atmosphere on crema)
+   ─────────────────────────────────────────────────────────────── */
+
+.crema-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 160px;
+}
+
+.noir-vignette {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 55%, rgba(139, 115, 85, 0.10) 0%, rgba(10, 10, 11, 0) 60%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, #1A1410 0%, #0A0A0B 50%, #000000 100%);
+}
+
+/* ───────────────────────────────────────────────────────────────
+   focus ring (a11y)
+   ─────────────────────────────────────────────────────────────── */
+
+:where(button, a, input, textarea, select):focus-visible {
+  outline: 2px solid var(--color-ev-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   reduced motion
+   ─────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   utility primitives
+   ─────────────────────────────────────────────────────────────── */
+
+.section-frame {
+  padding-inline: clamp(24px, 12vw, 168px);
+}
+
+@media (max-width: 768px) {
+  .section-frame {
+    padding-inline: 24px;
+  }
+}
+
+.hairline-noir { border-color: var(--color-noir-hairline); }
+.hairline-crema { border-color: rgba(26, 20, 16, 0.12); }
