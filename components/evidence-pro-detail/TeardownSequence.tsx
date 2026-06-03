@@ -118,6 +118,7 @@ function TeardownScrubVideo({ progress }: { progress: ReturnType<typeof useScrol
         muted
         playsInline
         preload="metadata"
+        aria-label="Despiece del Evidence Pro"
         poster="/video/evidence-pro-poster.jpg"
         className="h-full w-full object-contain"
       >

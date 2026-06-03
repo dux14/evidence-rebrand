@@ -72,7 +72,7 @@ export function HeroNoir() {
             reduce ? (
               <img
                 src="/video/evidence-pro-poster.jpg"
-                alt="Evidence Pro"
+                alt="Evidence Pro — electroestimulador multicanal"
                 className="h-full w-full object-contain"
               />
             ) : (
@@ -82,6 +82,7 @@ export function HeroNoir() {
                 muted
                 loop
                 playsInline
+                aria-label="Evidence Pro girando"
                 poster="/video/evidence-pro-poster.jpg"
               >
                 <source src="/video/evidence-pro-turntable.mp4" type="video/mp4" />

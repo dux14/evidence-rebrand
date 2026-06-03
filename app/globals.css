@@ -126,7 +126,10 @@ body {
 .hero-number {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(96px, 14vw, 160px);
+  /* Piso 64px: a 375px de viewport la palabra más larga ("programas.")
+     debe caber en ~327px de columna; el piso anterior de 96px la desbordaba
+     (auditoría 2026-06-03). 14vw se mantiene para no alterar tablet/desktop. */
+  font-size: clamp(64px, 14vw, 160px);
   line-height: 0.92;
   letter-spacing: -0.04em;
 }
