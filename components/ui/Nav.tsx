@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Mode = "noir" | "crema";
@@ -67,8 +68,15 @@ export function Nav() {
       className="fixed inset-x-0 top-0 z-50 border-b"
     >
       <nav className="section-frame flex h-[72px] items-center justify-between md:h-[72px]">
-        <a href="#top" className="wordmark text-[20px]">
-          evidence
+        <a href="#top" aria-label="evidence — inicio" className="flex items-center">
+          <Image
+            src={isNoir ? "/img/brand/evidence-wordmark-white.png" : "/img/brand/evidence-wordmark.png"}
+            alt="evidence"
+            width={74}
+            height={25}
+            priority
+            className="h-[22px] w-auto md:h-[24px]"
+          />
         </a>
 
         <ul className="hidden items-center gap-9 text-[13px] md:flex">

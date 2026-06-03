@@ -65,7 +65,30 @@ export function HeroNoir() {
 
         {/* Product anchor — center / right */}
         <div className="relative mx-auto flex h-[60vh] w-full max-w-[640px] items-center justify-center md:col-span-5 md:col-start-7 md:h-[72vh]">
-          {FEATURES.hero_3d ? <EvidenceProModel /> : <EvidenceProArtifact />}
+          {FEATURES.hero_3d ? (
+            <EvidenceProModel />
+          ) : FEATURES.hero_video_fallback ? (
+            reduce ? (
+              <img
+                src="/video/evidence-pro-poster.jpg"
+                alt="Evidence Pro"
+                className="h-full w-full object-contain"
+              />
+            ) : (
+              <video
+                className="h-full w-full object-contain"
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/video/evidence-pro-poster.jpg"
+              >
+                <source src="/video/evidence-pro-turntable.mp4" type="video/mp4" />
+              </video>
+            )
+          ) : (
+            <EvidenceProArtifact />
+          )}
         </div>
       </div>
 

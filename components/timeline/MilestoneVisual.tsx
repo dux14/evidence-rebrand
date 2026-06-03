@@ -1,13 +1,39 @@
 "use client";
 
 /**
- * Sepia-tinted editorial-photo placeholder for each milestone.
- * Variant determines what silhouette is drawn (cavitation, line, certification, etc.)
+ * Editorial milestone visual. When FEATURES.timeline_images is on, renders the
+ * real sepia archival photo from /public/img/timeline; otherwise a sepia-tinted
+ * code-drawn silhouette (cavitation device, line-up, certificate, map, Pro).
  */
+
+import Image from "next/image";
+import { FEATURES } from "@/lib/config";
 
 type Variant = "1998" | "2005" | "2012" | "2018" | "2024";
 
+const ALT: Record<Variant, string> = {
+  "1998": "Primer equipo Evidence, taller en Bogotá",
+  "2005": "Línea corporal Evidence",
+  "2012": "Certificación de equipo médico",
+  "2018": "Red técnica nacional Evidence",
+  "2024": "Evidence Pro, lanzamiento",
+};
+
 export function MilestoneVisual({ variant }: { variant: Variant }) {
+  if (FEATURES.timeline_images) {
+    return (
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EDE5DA]">
+        <Image
+          src={`/img/timeline/${variant}.webp`}
+          alt={ALT[variant]}
+          fill
+          sizes="(max-width: 768px) 100vw, 42vw"
+          className="object-cover"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EDE5DA]">
       {/* sepia warm wash */}

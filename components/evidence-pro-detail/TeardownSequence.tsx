@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion, useMotionValueEvent } from "framer-motion";
 import { useRef } from "react";
 import { CINEMATIC_EASE } from "@/lib/motion";
+import { FEATURES } from "@/lib/config";
 import { copy } from "@/lib/copy";
 import { SpecsMono } from "./SpecsMono";
 import { EvidenceProArtifact } from "@/components/hero/EvidenceProArtifact";
@@ -82,7 +83,11 @@ export function TeardownSequence() {
 
           {/* product anchor centered */}
           <div className="relative mx-auto h-[60vh] w-full max-w-[520px] md:col-span-6 md:col-start-2">
-            <ProductWithFade progress={scrollYProgress} />
+            {FEATURES.teardown_video ? (
+              <TeardownScrubVideo progress={scrollYProgress} />
+            ) : (
+              <ProductWithFade progress={scrollYProgress} />
+            )}
           </div>
 
           {/* crossfade copy */}
@@ -107,6 +112,34 @@ export function TeardownSequence() {
         </div>
       ) : null}
     </section>
+  );
+}
+
+function TeardownScrubVideo({ progress }: { progress: ReturnType<typeof useScroll>["scrollYProgress"] }) {
+  const vref = useRef<HTMLVideoElement>(null);
+
+  // Drive the video's playhead from scroll progress → scrubbable teardown.
+  useMotionValueEvent(progress, "change", (v) => {
+    const vid = vref.current;
+    if (!vid) return;
+    const dur = vid.duration;
+    if (!dur || Number.isNaN(dur)) return;
+    vid.currentTime = Math.min(dur - 0.05, Math.max(0, v) * dur);
+  });
+
+  return (
+    <div className="absolute inset-0 flex items-center justify-center">
+      <video
+        ref={vref}
+        muted
+        playsInline
+        preload="auto"
+        poster="/video/evidence-pro-poster.jpg"
+        className="h-full w-full object-contain"
+      >
+        <source src="/video/evidence-pro-teardown.mp4" type="video/mp4" />
+      </video>
+    </div>
   );
 }
 

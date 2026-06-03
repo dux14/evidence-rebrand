@@ -31,3 +31,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+.asset-drafts
+ASSETS-WALKTHROUGH.md
+# local asset drafts & secrets
+.asset-drafts/

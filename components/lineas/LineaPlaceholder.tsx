@@ -1,12 +1,22 @@
 "use client";
 
 /**
- * Crema-toned product placeholder for each línea — until /public/img/lineas
- * webp assets land. Renders a clinical instrument silhouette adapted to the
- * type of line (warm tones for corporal, cool for láser, etc).
+ * Product visual for each línea. When FEATURES.lineas_images is on, renders the
+ * real editorial product photo from /public/img/lineas; otherwise falls back to
+ * a code-drawn clinical instrument silhouette (warm for corporal, cool for láser…).
  */
 
+import Image from "next/image";
+import { FEATURES } from "@/lib/config";
+
 type Variant = "corporal" | "facial" | "laser" | "soporte";
+
+const IMAGES: Record<Variant, { src: string; alt: string }> = {
+  corporal: { src: "/img/lineas/corporal.webp", alt: "Evidence Ultracavitación — línea corporal" },
+  facial: { src: "/img/lineas/facial.webp", alt: "Evidence Atalanta Plus 6F — línea facial" },
+  laser: { src: "/img/lineas/laser.webp", alt: "Evidence Lipo-láser — línea láser" },
+  soporte: { src: "/img/lineas/soporte.webp", alt: "Evidence Carboskin — línea soporte" },
+};
 
 const PALETTES: Record<Variant, { body: string; accent: string; bg: string }> = {
   corporal: { body: "#1B1B1F", accent: "#FFB68A", bg: "#EDE5DA" },
@@ -16,6 +26,24 @@ const PALETTES: Record<Variant, { body: string; accent: string; bg: string }> = 
 };
 
 export function LineaPlaceholder({ variant }: { variant: Variant }) {
+  if (FEATURES.lineas_images) {
+    const img = IMAGES[variant];
+    return (
+      <div
+        className="relative aspect-[4/5] w-full overflow-hidden"
+        style={{ background: "var(--crema-surface)" }}
+      >
+        <Image
+          src={img.src}
+          alt={img.alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover"
+        />
+      </div>
+    );
+  }
+
   const p = PALETTES[variant];
   return (
     <div

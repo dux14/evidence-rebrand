@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { copy } from "@/lib/copy";
 
 export function Footer() {
@@ -9,7 +10,13 @@ export function Footer() {
     >
       <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
-          <h3 className="wordmark text-[32px] md:text-[40px]">evidence</h3>
+          <Image
+            src="/img/brand/evidence-wordmark.png"
+            alt="evidence"
+            width={118}
+            height={40}
+            className="h-[34px] w-auto md:h-[42px]"
+          />
           <p className="mt-6 max-w-[28ch] text-[14px] leading-relaxed">
             {copy.footer_line}
           </p>

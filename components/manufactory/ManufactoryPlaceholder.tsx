@@ -1,11 +1,22 @@
 "use client";
 
 /**
- * Crema-toned editorial-photo placeholder. Renders a film-still-ish frame
- * with a side-lit workbench until /public/img/manufactory/*.webp lands.
+ * Editorial workshop visual. When FEATURES.manufactory_images is on, renders the
+ * real film-still photo from /public/img/manufactory; otherwise a code-drawn,
+ * side-lit workbench placeholder.
  */
 
+import Image from "next/image";
+import { FEATURES } from "@/lib/config";
+
 type Variant = "wide" | "macro-solder" | "macro-calibration" | "macro-pack";
+
+const IMAGES: Record<Variant, { src: string; alt: string }> = {
+  wide: { src: "/img/manufactory/wide.webp", alt: "Taller Evidence en Bogotá" },
+  "macro-solder": { src: "/img/manufactory/solder.webp", alt: "Soldadura SMD" },
+  "macro-calibration": { src: "/img/manufactory/calibration.webp", alt: "Banco de calibración" },
+  "macro-pack": { src: "/img/manufactory/pack.webp", alt: "Embalaje y despacho" },
+};
 
 export function ManufactoryPlaceholder({
   variant,
@@ -15,6 +26,28 @@ export function ManufactoryPlaceholder({
   caption?: string;
 }) {
   const aspect = variant === "wide" ? "aspect-[16/9]" : "aspect-[4/5]";
+
+  if (FEATURES.manufactory_images) {
+    const img = IMAGES[variant];
+    return (
+      <figure className="relative w-full">
+        <div className={`relative w-full overflow-hidden bg-[#1A1714] ${aspect}`}>
+          <Image
+            src={img.src}
+            alt={img.alt}
+            fill
+            sizes={variant === "wide" ? "100vw" : "(max-width: 768px) 100vw, 33vw"}
+            className="object-cover"
+          />
+        </div>
+        {caption ? (
+          <figcaption className="font-mono-readout mt-3 text-[10px] text-[color:var(--crema-fg)]/55 md:text-[11px]">
+            {caption}
+          </figcaption>
+        ) : null}
+      </figure>
+    );
+  }
 
   return (
     <figure className="relative w-full">
