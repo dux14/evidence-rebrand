@@ -102,6 +102,12 @@
       { "eyebrow": "STATE 03 / 04 · TRANSDUCER", "title": "A handpiece built for clinical use.", "body": "Liquid cooling. Ceramic coupling. Modular replacement at the plant." },
       { "eyebrow": "STATE 04 / 04 · MEMORY", "title": "10 programs, remembered.", "body": "This is Evidence Pro. The device we designed to be used every day." }
     ],
+    "lineas_eyebrow": "LINES",
+    "lineas_tech_label": "— TECHNOLOGIES",
+    "lineas_quote": "You do not buy the catalog. You choose by use.",
+    "lineas_cta_prefix": "Explore",
+    "respaldo_subhead": "Four promises, measurable. Nothing abstract.",
+    "manufactory_eyebrow_label": "WORKSHOP",
     "manufactory_eyebrow": "BOGOTÁ · 1995",
     "manufactory_captions": ["01 · SMD SOLDERING · LINE A", "02 · CALIBRATION · BENCH 03", "03 · PACKAGING · MED DISPATCH"],
     "timeline_eyebrow": "ARCHIVE",
@@ -117,6 +123,7 @@
       "2018": "Evidence nationwide technical network",
       "2024": "Evidence Pro, launch"
     },
+    "respaldo_eyebrow_label": "SUPPORT",
     "respaldo_eyebrow": "04 PROMISES",
     "contact_headline": "Book a demonstration at your clinic.",
     "contact_body": "An Evidence technician visits your cabin with a Pro configured for your protocols.",

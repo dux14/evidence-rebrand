@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 
 export function Footer() {
+  const copy = useCopy();
   return (
     <footer
       data-mode="crema"
@@ -23,19 +26,17 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-3 md:col-start-9">
-          <p className="font-mono-readout text-[11px] opacity-60">Sedes</p>
+          <p className="font-mono-readout text-[11px] opacity-60">{copy.ui.footer_sedes_label}</p>
           <ul className="mt-4 space-y-1.5 text-[14px]">
-            <li>Bogotá</li>
-            <li>Medellín</li>
-            <li>Cali</li>
+            {copy.ui.footer_cities.map((c) => (
+              <li key={c}>{c}</li>
+            ))}
           </ul>
         </div>
       </div>
 
       <div className="mt-16 flex flex-col gap-3 border-t border-[rgba(26,20,16,0.08)] pt-6 text-[11px] md:flex-row md:items-center md:justify-between">
-        <span className="font-mono-readout opacity-60">
-          © Evidence S.A.S · NIT 800.XXX.XXX-X
-        </span>
+        <span className="font-mono-readout opacity-60">{copy.ui.footer_copyright}</span>
         <div className="flex gap-6 font-mono-readout opacity-60">
           <a href="#legal" className="hover:opacity-100">
             Aviso legal

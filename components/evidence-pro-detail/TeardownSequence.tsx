@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, useReducedMotion, useMotionValueEvent 
 import { useRef } from "react";
 import { CINEMATIC_EASE } from "@/lib/motion";
 import { FEATURES } from "@/lib/config";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 import { SpecsMono } from "./SpecsMono";
 import { EvidenceProArtifact } from "@/components/hero/EvidenceProArtifact";
 
@@ -20,30 +20,10 @@ export function TeardownSequence() {
     offset: ["start start", "end end"],
   });
   const reduce = useReducedMotion();
+  const copy = useCopy();
 
   // Four crossfade copy beats — each window of 0.25
-  const beats: { eyebrow: string; title: string; body: string }[] = [
-    {
-      eyebrow: "ESTADO 01 / 04 · EXTERIOR",
-      title: "Diez programas en una sola plataforma.",
-      body: "Cuatro modos de entrega. Pantalla calibrada en planta antes de salir.",
-    },
-    {
-      eyebrow: "ESTADO 02 / 04 · INTERIOR",
-      title: "Lo que no se vende: la calibración.",
-      body: "Cada Pro pasa por seis meses de pruebas internas antes de entrar al inventario.",
-    },
-    {
-      eyebrow: "ESTADO 03 / 04 · TRANSDUCTOR",
-      title: "Manípulo de uso clínico.",
-      body: "Refrigeración líquida. Acople cerámico. Reemplazo modular en planta.",
-    },
-    {
-      eyebrow: "ESTADO 04 / 04 · MEMORIA",
-      title: "10 programas, recordados.",
-      body: "Esto es Evidence Pro. El equipo que diseñamos para usarlo todos los días.",
-    },
-  ];
+  const beats = copy.ui.teardown_beats;
 
   const beatRange = (i: number) => {
     const w = 1 / beats.length;
@@ -76,9 +56,13 @@ export function TeardownSequence() {
           {/* meta-eyebrow row */}
           <div className="absolute inset-x-0 top-8 flex items-center justify-between px-[inherit]">
             <span className="font-mono-readout text-[11px] text-white/55 md:text-[12px]">
-              PRO · IN DEPTH
+              {copy.ui.teardown_eyebrow}
             </span>
-            <ProgressIndicator progress={scrollYProgress} count={beats.length} />
+            <ProgressIndicator
+              progress={scrollYProgress}
+              count={beats.length}
+              label={copy.ui.teardown_scroll_label}
+            />
           </div>
 
           {/* product anchor centered */}
@@ -225,9 +209,11 @@ function CrossfadeBeat({
 function ProgressIndicator({
   progress,
   count,
+  label,
 }: {
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   count: number;
+  label: string;
 }) {
   // Hooks must run at the top level; we always create 4 segments and ignore extras.
   const seg1 = useTransform(progress, [0, 0.001, 0.25], [0.18, 1, 0.18]);
@@ -239,7 +225,7 @@ function ProgressIndicator({
   return (
     <div className="flex items-center gap-3">
       <span className="font-mono-readout text-[11px] text-white/55 md:text-[12px]">
-        SCROLL
+        {label}
       </span>
       <div className="flex gap-1.5">
         {segs.map((opacity, i) => (

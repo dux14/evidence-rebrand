@@ -34,6 +34,12 @@ export type UiCopy = {
   teardown_eyebrow: string;
   teardown_scroll_label: string;
   teardown_beats: TeardownBeat[];
+  lineas_eyebrow: string;
+  lineas_tech_label: string;
+  lineas_quote: string;
+  lineas_cta_prefix: string;
+  respaldo_subhead: string;
+  manufactory_eyebrow_label: string;
   manufactory_eyebrow: string;
   manufactory_captions: string[];
   timeline_eyebrow: string;
@@ -43,6 +49,7 @@ export type UiCopy = {
   timeline_hito_label: string;
   timeline_year_aria: string;
   timeline_alts: Record<string, string>;
+  respaldo_eyebrow_label: string;
   respaldo_eyebrow: string;
   contact_headline: string;
   contact_body: string;

@@ -8,18 +8,12 @@
 
 import Image from "next/image";
 import { FEATURES } from "@/lib/config";
+import { useCopy } from "@/lib/i18n";
 
 type Variant = "1998" | "2005" | "2012" | "2018" | "2024";
 
-const ALT: Record<Variant, string> = {
-  "1998": "Primer equipo Evidence, taller en Bogotá",
-  "2005": "Línea corporal Evidence",
-  "2012": "Certificación de equipo médico",
-  "2018": "Red técnica nacional Evidence",
-  "2024": "Evidence Pro, lanzamiento",
-};
-
 export function MilestoneVisual({ variant }: { variant: Variant }) {
+  const ALT = useCopy().ui.timeline_alts;
   if (FEATURES.timeline_images) {
     return (
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EDE5DA]">

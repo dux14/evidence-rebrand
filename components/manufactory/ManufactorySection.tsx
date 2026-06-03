@@ -2,11 +2,12 @@
 
 import { motion } from "framer-motion";
 import { CINEMATIC_EASE } from "@/lib/motion";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 import { SerifQuote } from "@/components/ui/SerifQuote";
 import { ManufactoryPlaceholder } from "./ManufactoryPlaceholder";
 
 export function ManufactorySection() {
+  const copy = useCopy();
   return (
     <section
       id="taller"
@@ -19,9 +20,11 @@ export function ManufactorySection() {
       <div className="section-frame relative">
         {/* eyebrow row */}
         <div className="flex items-center justify-between">
-          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">TALLER</span>
           <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
-            BOGOTÁ · 1998
+            {copy.ui.manufactory_eyebrow_label}
+          </span>
+          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
+            {copy.ui.manufactory_eyebrow}
           </span>
         </div>
         <div className="mt-3 h-px bg-[rgba(26,20,16,0.12)]" />
@@ -68,7 +71,7 @@ export function ManufactorySection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE }}
         >
-          <ManufactoryPlaceholder variant="macro-solder" caption="01 · SOLDADURA SMD · LÍNEA A" />
+          <ManufactoryPlaceholder variant="macro-solder" caption={copy.ui.manufactory_captions[0]} />
         </motion.div>
 
         <motion.div
@@ -77,7 +80,7 @@ export function ManufactorySection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.12 }}
         >
-          <ManufactoryPlaceholder variant="macro-calibration" caption="02 · CALIBRACIÓN · BANCO 03" />
+          <ManufactoryPlaceholder variant="macro-calibration" caption={copy.ui.manufactory_captions[1]} />
         </motion.div>
 
         <motion.div
@@ -86,7 +89,7 @@ export function ManufactorySection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.24 }}
         >
-          <ManufactoryPlaceholder variant="macro-pack" caption="03 · EMBALAJE · DESPACHO MED" />
+          <ManufactoryPlaceholder variant="macro-pack" caption={copy.ui.manufactory_captions[2]} />
         </motion.div>
       </div>
 

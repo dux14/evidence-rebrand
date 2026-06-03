@@ -102,6 +102,12 @@
       { "eyebrow": "ESTADO 03 / 04 · TRANSDUCTOR", "title": "Manípulo de uso clínico.", "body": "Refrigeración líquida. Acople cerámico. Reemplazo modular en planta." },
       { "eyebrow": "ESTADO 04 / 04 · MEMORIA", "title": "10 programas, recordados.", "body": "Esto es Evidence Pro. El equipo que diseñamos para usarlo todos los días." }
     ],
+    "lineas_eyebrow": "LÍNEAS",
+    "lineas_tech_label": "— TECNOLOGÍAS",
+    "lineas_quote": "El catálogo no se compra. Se elige por uso.",
+    "lineas_cta_prefix": "Conocer",
+    "respaldo_subhead": "Cuatro promesas, medibles. Nada abstracto.",
+    "manufactory_eyebrow_label": "TALLER",
     "manufactory_eyebrow": "BOGOTÁ · 1995",
     "manufactory_captions": ["01 · SOLDADURA SMD · LÍNEA A", "02 · CALIBRACIÓN · BANCO 03", "03 · EMBALAJE · DESPACHO MED"],
     "timeline_eyebrow": "ARCHIVO",
@@ -117,6 +123,7 @@
       "2018": "Red técnica nacional Evidence",
       "2024": "Evidence Pro, lanzamiento"
     },
+    "respaldo_eyebrow_label": "RESPALDO",
     "respaldo_eyebrow": "04 PROMESAS",
     "contact_headline": "Agende una demostración en su clínica.",
     "contact_body": "Un técnico Evidence visita su cabina con un Pro configurado para sus protocolos.",

@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { CINEMATIC_EASE } from "@/lib/motion";
-import { copy, type LineaDescriptor } from "@/lib/copy";
+import { type LineaDescriptor } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 import { SerifQuote } from "@/components/ui/SerifQuote";
 import { LineaPlaceholder } from "./LineaPlaceholder";
 
@@ -10,6 +11,7 @@ const VARIANTS = ["corporal", "facial", "laser", "soporte"] as const;
 type Variant = (typeof VARIANTS)[number];
 
 export function LineasSection() {
+  const copy = useCopy();
   return (
     <section
       id="lineas"
@@ -22,7 +24,9 @@ export function LineasSection() {
       {/* eyebrow row */}
       <div className="section-frame relative">
         <div className="flex items-center justify-between">
-          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">LÍNEAS</span>
+          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
+            {copy.ui.lineas_eyebrow}
+          </span>
           <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
             {String(copy.lineas_descriptors.length).padStart(2, "0")} /{" "}
             {String(copy.lineas_descriptors.length).padStart(2, "0")}
@@ -59,7 +63,7 @@ export function LineasSection() {
       <div className="relative my-16 md:my-24">
         <div className="section-frame">
           <SerifQuote align="center" size="lg">
-            El catálogo no se compra. Se elige por uso.
+            {copy.ui.lineas_quote}
           </SerifQuote>
         </div>
       </div>
@@ -78,6 +82,7 @@ function LineaBlock({
   variant: Variant;
   invert: boolean;
 }) {
+  const copy = useCopy();
   return (
     <motion.article
       initial="hidden"
@@ -107,7 +112,8 @@ function LineaBlock({
           }}
         >
           <div className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
-            {String(index + 1).padStart(2, "0")} / {linea.nombre.replace("Línea ", "").toUpperCase()}
+            {String(index + 1).padStart(2, "0")} /{" "}
+            {linea.nombre.replace(/Línea\s|\s?Line/g, "").trim().toUpperCase()}
           </div>
 
           <h3 className="mt-6 font-display text-[40px] font-normal leading-[1.05] md:text-[56px]">
@@ -119,7 +125,7 @@ function LineaBlock({
           </p>
 
           <ul className="mt-10 space-y-2 text-[14px]">
-            <li className="font-mono-readout text-[10px] opacity-50">— TECNOLOGÍAS</li>
+            <li className="font-mono-readout text-[10px] opacity-50">{copy.ui.lineas_tech_label}</li>
             {linea.tecnologias.map((t) => (
               <li key={t} className="flex items-baseline gap-3">
                 <span className="font-mono-readout text-[10px] opacity-40">·</span>
@@ -133,7 +139,7 @@ function LineaBlock({
             className="mt-10 inline-flex items-center gap-2 text-[13px] underline decoration-[color:var(--ev-blue)] decoration-2 underline-offset-[6px] transition-opacity hover:opacity-70"
             style={{ color: "var(--ev-blue-deep)" }}
           >
-            Conocer {linea.nombre.toLowerCase()}
+            {copy.ui.lineas_cta_prefix} {linea.nombre.toLowerCase()}
             <span aria-hidden>→</span>
           </a>
         </motion.div>
