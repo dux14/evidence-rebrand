@@ -88,29 +88,32 @@ La base responsive existe (Tailwind `md:` everywhere, `grid-cols-1` por defecto 
 
 ## 5. Phase 2 — backlog priorizado
 
+> **Actualización 2026-06-03 (rama `mejoras-landing`):** los items marcados ✅ se resolvieron en esa rama. Nuevo backlog priorizado en `docs/superpowers/audits/2026-06-03-critique-agencia.md`.
+
 **P0 (antes de difundir / dominio real)**
-- [ ] Reemplazar **todos** los datos inventados de §4 (specs, métricas postventa, NIT, año 1995, hitos).
-- [ ] **Menú móvil** (R1) — hoy no hay navegación en móvil.
-- [ ] Backend del **formulario de contacto** (server action → email/CRM) + validación.
-- [ ] Páginas **Aviso legal / Privacidad** (links ya existen pero rotos).
-- [ ] Conectar **dominio** (¿evidence.com.co o subdominio?) en Vercel.
+- [ ] Reemplazar **todos** los datos inventados de §4 (specs, métricas postventa, NIT, hitos). *(El año 1995 ya quedó corregido en eyebrow taller + JSON-LD.)*
+- [x] **Menú móvil** (R1) — ✅ overlay noir con hamburguesa (`Nav.tsx`).
+- [x] Backend del **formulario de contacto** — ✅ Server Action + Resend con validación. **Pendiente del usuario:** crear cuenta Resend y setear `RESEND_API_KEY` + `CONTACT_TO_EMAIL` en Vercel.
+- [x] Links legales rotos — ✅ removidos del footer. *(Las páginas legales reales siguen pendientes de textos del cliente.)*
+- [ ] Conectar **dominio** (¿evidence.com.co o subdominio?) en Vercel. *(Al hacerlo: quitar `robots: noindex` y actualizar `SITE_URL` en `app/layout.tsx`.)*
 
 **P1 (calidad)**
-- [ ] **i18n ES/EN** real (el toggle ya está en UI).
-- [ ] Specs reales del Evidence Pro (electroestimulación) + reescribir beat "transductor".
+- [x] **i18n ES/EN** real — ✅ diccionarios `content/copy.{es,en}.json` + `LocaleProvider` + toggle funcional con persistencia.
+- [ ] Specs reales del Evidence Pro (electroestimulación) + reescribir beat "transductor". *(Ahora centralizado: solo se edita `copy.es.json`/`copy.en.json`.)*
 - [ ] Confirmar/reestructurar líneas Láser y Soporte al catálogo real.
-- [ ] `preload="metadata"` + lazy para video teardown; fallback móvil (P1 perf).
-- [ ] Lighthouse pass (LCP/CLS/INP) + correcciones.
-- [ ] Accesibilidad: contraste sobre el nuevo crema cálido, alt texts, focus states, `prefers-reduced-motion` (ya parcial).
+- [x] `preload="metadata"` para video teardown — ✅ (2.85MB ya no cargan en el load inicial).
+- [ ] Lighthouse pass (LCP/CLS/INP) en prod + correcciones.
+- [ ] Accesibilidad: contraste de microlabels opacity-50/55 sobre crema (<4.5:1) — ver critique #4.
+- [ ] Cargar la serif `PP Editorial New` o cambiar fallback — subió de P2 (critique #5).
 
 **P2 (pulido / nice-to-have)**
 - [ ] Teardown más dramático vía **Veo 3.1 Frames-to-Video** (Flow) si se quiere explode real.
-- [ ] Favicon: validar legibilidad del icono onda a 16px (si no, versión badge).
-- [ ] OG por sección/página; sitemap.xml + robots.txt; meta SEO.
+- [x] Favicon legible a 16px — ✅ regenerado edge-to-edge (onda al 95% del canvas). *(Pendiente menor: variante clara para tabs dark, critique #9.)*
+- [x] sitemap.xml + robots.txt + meta SEO + JSON-LD — ✅ (con `noindex` temporal deliberado).
 - [ ] Analítica (Vercel Analytics / GA) + eventos de CTA.
-- [ ] Cargar la serif `PP Editorial New` o ajustar fallback (P5).
 - [ ] Si sirve a UE: etiquetado de imágenes IA (EU AI Act, ago-2026) + consentimiento cookies.
 - [ ] Limpiar deps 3D (`three`, `@react-three/*`) si el hero 3D no se usará.
+- [ ] Regenerar fotos de taller con fondo crema vía Higgsfield **si** se prefiere taller claro (hoy: sección noir, decisión reversible — ver auditoría §3).
 
 ---
 
