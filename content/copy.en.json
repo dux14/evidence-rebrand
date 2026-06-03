@@ -1,0 +1,136 @@
+{
+  "hero_headline": "Evidence Pro. 10 programs.",
+  "hero_subheadline": "Built by the same hands that answer the phone afterward.",
+  "seccion_lineas_headline": "Four lines. Twelve instruments.",
+  "lineas_descriptors": [
+    {
+      "nombre": "Body Line",
+      "descriptor": "Contouring, drainage, firming. High-intensity platforms.",
+      "tecnologias": ["Multipolar cavitation", "Tripolar radiofrequency", "Vacuum therapy"]
+    },
+    {
+      "nombre": "Facial Line",
+      "descriptor": "Needle-free rejuvenation. Visible results in-cabin.",
+      "tecnologias": ["Microcurrents", "Facial HIFU", "Virtual mesotherapy"]
+    },
+    {
+      "nombre": "Laser Line",
+      "descriptor": "Pigment, vascular, hair removal. Multi-wavelength.",
+      "tecnologias": ["808 nm diode", "Nd:YAG 1064 nm", "Multiband IPL"]
+    },
+    {
+      "nombre": "Support Line",
+      "descriptor": "Sanitation, oxygenation, cabin upkeep.",
+      "tecnologias": ["Hydro-cleansing", "Oxygen pressotherapy", "UV-C sterilization"]
+    }
+  ],
+  "evidence_pro_detail_intro": "Ten programs on a single platform. Four delivery modes. Screen calibrated at the plant before it ships. This is not a unit assembled for a catalog. It is the one we tested for six months before selling it.",
+  "evidence_pro_specs": [
+    { "label": "FREQ", "value": "0.5 – 5 MHz" },
+    { "label": "POWER", "value": "60 W max" },
+    { "label": "MODES", "value": "4" },
+    { "label": "PROGRAMS", "value": "10" }
+  ],
+  "manufactory_headline": "Built here.",
+  "manufactory_subhead": "Every Evidence Pro leaves the same plant where the next one will be assembled.",
+  "manufactory_quote": "The hands that assemble are the hands that honor the warranty.",
+  "timeline_milestones": [
+    { "anio": "1998", "objeto": "First cavitation device", "frase": "Four technicians. A workshop in Bogotá." },
+    { "anio": "2005", "objeto": "Complete Body line", "frase": "Twenty-two clinics across five cities." },
+    { "anio": "2012", "objeto": "Full INVIMA certification", "frase": "Every device registered and traceable." },
+    { "anio": "2018", "objeto": "Nationwide technical network", "frase": "Bogotá, Medellín, Cali, Barranquilla." },
+    { "anio": "2024", "objeto": "Evidence Pro launch", "frase": "Three years of in-house development." }
+  ],
+  "respaldo_headline": "After the sale.",
+  "respaldo_concrete_promises": [
+    {
+      "index": "01",
+      "claim": "In-house technicians in Bogotá, Medellín, Cali.",
+      "metrics": [
+        { "label": "TECHNICIANS", "value": "14" },
+        { "label": "CITIES", "value": "3" }
+      ]
+    },
+    {
+      "index": "02",
+      "claim": "Spare parts in local stock. Zero imports.",
+      "metrics": [
+        { "label": "SKUS", "value": "220+" },
+        { "label": "STOCK", "value": "72 h" }
+      ]
+    },
+    {
+      "index": "03",
+      "claim": "Technical response in under 48 hours.",
+      "metrics": [
+        { "label": "SLA", "value": "48 h" },
+        { "label": "ESCALATION", "value": "DIRECT" }
+      ]
+    },
+    {
+      "index": "04",
+      "claim": "36-month warranty, no asterisk.",
+      "metrics": [
+        { "label": "COVERAGE", "value": "36 m" },
+        { "label": "ASTERISKS", "value": "0" }
+      ]
+    }
+  ],
+  "cta_primary": "Book a demo",
+  "cta_secondary": "Talk to a technician",
+  "footer_line": "Evidence. Equipment built by the same hands that repair it.",
+  "ui": {
+    "nav_links": [
+      { "href": "#lineas", "label": "lines" },
+      { "href": "#pro", "label": "pro" },
+      { "href": "#taller", "label": "workshop" },
+      { "href": "#archivo", "label": "archive" },
+      { "href": "#respaldo", "label": "support" }
+    ],
+    "nav_menu_open": "Open menu",
+    "nav_menu_close": "Close menu",
+    "hero_meta_location": "AESTHETIC STUDIO · BOGOTÁ",
+    "hero_meta_film": "FILM 01 / 06",
+    "hero_readout_lines": ["EV / PRO · S/N 0000-0001", "10 PROGRAMS · 4 MODES · 0.5–5 MHz", "CALIBRATED AT THE PLANT · BOGOTÁ"],
+    "hero_scroll_cue": "↓ scroll",
+    "beat_whisper": "Four disciplines. One manufacturer.",
+    "teardown_eyebrow": "PRO · IN DEPTH",
+    "teardown_scroll_label": "SCROLL",
+    "teardown_beats": [
+      { "eyebrow": "STATE 01 / 04 · EXTERIOR", "title": "Ten programs on a single platform.", "body": "Four delivery modes. Screen calibrated at the plant before shipping." },
+      { "eyebrow": "STATE 02 / 04 · INTERIOR", "title": "What is not for sale: the calibration.", "body": "Every Pro goes through six months of internal testing before entering inventory." },
+      { "eyebrow": "STATE 03 / 04 · TRANSDUCER", "title": "A handpiece built for clinical use.", "body": "Liquid cooling. Ceramic coupling. Modular replacement at the plant." },
+      { "eyebrow": "STATE 04 / 04 · MEMORY", "title": "10 programs, remembered.", "body": "This is Evidence Pro. The device we designed to be used every day." }
+    ],
+    "manufactory_eyebrow": "BOGOTÁ · 1995",
+    "manufactory_captions": ["01 · SMD SOLDERING · LINE A", "02 · CALIBRATION · BENCH 03", "03 · PACKAGING · MED DISPATCH"],
+    "timeline_eyebrow": "ARCHIVE",
+    "timeline_counter": "05 / 05",
+    "timeline_headline": "Twenty-six years, in five objects.",
+    "timeline_quote": "In 2012 we stopped asking suppliers for traceability. We started producing it.",
+    "timeline_hito_label": "MILESTONE",
+    "timeline_year_aria": "Year",
+    "timeline_alts": {
+      "1998": "First Evidence device, workshop in Bogotá",
+      "2005": "Evidence body line",
+      "2012": "Medical device certification",
+      "2018": "Evidence nationwide technical network",
+      "2024": "Evidence Pro, launch"
+    },
+    "respaldo_eyebrow": "04 PROMISES",
+    "contact_headline": "Book a demonstration at your clinic.",
+    "contact_body": "An Evidence technician visits your cabin with a Pro configured for your protocols.",
+    "contact_cities_label": "— CITIES COVERED",
+    "contact_cities": "Bogotá · Medellín · Cali · Barranquilla",
+    "contact_fields": { "nombre": "Name", "clinica": "Clinic", "ciudad": "City", "telefono": "Phone" },
+    "contact_submit": "Book a visit",
+    "contact_sending": "Sending…",
+    "contact_success_eyebrow": "REQUEST RECEIVED",
+    "contact_success_msg": "An Evidence technician will contact you within 48 business hours.",
+    "contact_error_msg": "We could not send your request. Try again or call us.",
+    "contact_phone": "+57 310 3247091",
+    "footer_sedes_label": "Locations",
+    "footer_cities": ["Bogotá", "Medellín", "Cali"],
+    "footer_copyright": "© Evidence S.A.S · NIT 800.XXX.XXX-X"
+  }
+}
