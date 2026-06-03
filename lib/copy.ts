@@ -1,4 +1,4 @@
-import data from "@/content/copy.json";
+import es from "@/content/copy.es.json";
 
 export type LineaDescriptor = {
   nombre: string;
@@ -20,6 +20,46 @@ export type RespaldoPromise = {
 
 export type EvidenceSpec = { label: string; value: string };
 
+export type TeardownBeat = { eyebrow: string; title: string; body: string };
+
+export type UiCopy = {
+  nav_links: { href: string; label: string }[];
+  nav_menu_open: string;
+  nav_menu_close: string;
+  hero_meta_location: string;
+  hero_meta_film: string;
+  hero_readout_lines: string[];
+  hero_scroll_cue: string;
+  beat_whisper: string;
+  teardown_eyebrow: string;
+  teardown_scroll_label: string;
+  teardown_beats: TeardownBeat[];
+  manufactory_eyebrow: string;
+  manufactory_captions: string[];
+  timeline_eyebrow: string;
+  timeline_counter: string;
+  timeline_headline: string;
+  timeline_quote: string;
+  timeline_hito_label: string;
+  timeline_year_aria: string;
+  timeline_alts: Record<string, string>;
+  respaldo_eyebrow: string;
+  contact_headline: string;
+  contact_body: string;
+  contact_cities_label: string;
+  contact_cities: string;
+  contact_fields: { nombre: string; clinica: string; ciudad: string; telefono: string };
+  contact_submit: string;
+  contact_sending: string;
+  contact_success_eyebrow: string;
+  contact_success_msg: string;
+  contact_error_msg: string;
+  contact_phone: string;
+  footer_sedes_label: string;
+  footer_cities: string[];
+  footer_copyright: string;
+};
+
 export type Copy = {
   hero_headline: string;
   hero_subheadline: string;
@@ -36,6 +76,8 @@ export type Copy = {
   cta_primary: string;
   cta_secondary: string;
   footer_line: string;
+  ui: UiCopy;
 };
 
-export const copy = data as Copy;
+/** Default (ES) copy — para contextos server/no-reactivos. Componentes client usan useCopy(). */
+export const copy = es as Copy;
