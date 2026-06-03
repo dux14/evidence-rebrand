@@ -72,10 +72,10 @@ export function Nav() {
           <Image
             src={isNoir ? "/img/brand/evidence-wordmark-white.png" : "/img/brand/evidence-wordmark.png"}
             alt="evidence"
-            width={74}
-            height={25}
+            width={107}
+            height={36}
             priority
-            className="h-[22px] w-auto md:h-[24px]"
+            className="h-[28px] w-auto md:h-[34px]"
           />
         </a>
 

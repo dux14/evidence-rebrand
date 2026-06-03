@@ -19,8 +19,8 @@ export function SectionBeat({ direction, whisper }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
 
-  const fromColor = direction === "noir-to-crema" ? "#0A0A0B" : "#FBF9F7";
-  const toColor = direction === "noir-to-crema" ? "#FBF9F7" : "#0A0A0B";
+  const fromColor = direction === "noir-to-crema" ? "#0A0A0B" : "#E9D8C0";
+  const toColor = direction === "noir-to-crema" ? "#E9D8C0" : "#0A0A0B";
   const fromText = direction === "noir-to-crema" ? "#FFFFFF" : "#1A1410";
   const toText = direction === "noir-to-crema" ? "#1A1410" : "#FFFFFF";
 
@@ -33,12 +33,12 @@ export function SectionBeat({ direction, whisper }: Props) {
       ref={ref}
       data-mode={direction === "noir-to-crema" ? "crema" : "noir"}
       style={{ background: bg }}
-      className="relative flex h-[80vh] items-center justify-center md:h-[100vh]"
+      className="relative flex h-[44vh] items-center justify-center md:h-[56vh]"
     >
       {whisper ? (
         <motion.p
           style={{ color, opacity }}
-          className="font-serif-italic max-w-[18ch] text-center text-[28px] leading-[1.1] md:text-[48px]"
+          className="font-serif-italic max-w-[20ch] text-center text-[32px] leading-[1.1] md:text-[56px]"
         >
           {whisper}
         </motion.p>

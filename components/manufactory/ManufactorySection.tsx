@@ -11,7 +11,7 @@ export function ManufactorySection() {
     <section
       id="taller"
       data-mode="crema"
-      className="relative isolate overflow-hidden py-28 md:py-40"
+      className="relative isolate overflow-hidden py-20 md:py-28"
       style={{ background: "var(--crema-canvas)", color: "var(--crema-fg)" }}
     >
       <div className="crema-grain pointer-events-none absolute inset-0" />
@@ -61,13 +61,12 @@ export function ManufactorySection() {
       </div>
 
       {/* Three macros */}
-      <div className="section-frame mt-16 grid grid-cols-1 gap-8 md:mt-24 md:grid-cols-12 md:gap-8">
+      <div className="section-frame mt-12 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-3 md:gap-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE }}
-          className="md:col-span-4 md:col-start-2"
         >
           <ManufactoryPlaceholder variant="macro-solder" caption="01 · SOLDADURA SMD · LÍNEA A" />
         </motion.div>
@@ -77,7 +76,6 @@ export function ManufactorySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.12 }}
-          className="md:col-span-4"
         >
           <ManufactoryPlaceholder variant="macro-calibration" caption="02 · CALIBRACIÓN · BANCO 03" />
         </motion.div>
@@ -87,7 +85,6 @@ export function ManufactorySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.24 }}
-          className="md:col-span-4"
         >
           <ManufactoryPlaceholder variant="macro-pack" caption="03 · EMBALAJE · DESPACHO MED" />
         </motion.div>

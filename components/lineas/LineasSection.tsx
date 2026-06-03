@@ -14,7 +14,7 @@ export function LineasSection() {
     <section
       id="lineas"
       data-mode="crema"
-      className="relative isolate overflow-hidden py-28 md:py-40"
+      className="relative isolate overflow-hidden py-20 md:py-28"
       style={{ background: "var(--crema-canvas)", color: "var(--crema-fg)" }}
     >
       <div className="crema-grain pointer-events-none absolute inset-0" />
@@ -35,14 +35,14 @@ export function LineasSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-15%" }}
           transition={{ duration: 0.9, ease: CINEMATIC_EASE }}
-          className="mt-10 max-w-[16ch] font-display text-[40px] font-light leading-[0.96] md:text-[72px]"
+          className="mt-10 max-w-[16ch] font-display text-[46px] font-light leading-[0.96] md:text-[84px]"
         >
           {copy.seccion_lineas_headline}
         </motion.h2>
       </div>
 
       {/* línea blocks */}
-      <div className="section-frame mt-24 flex flex-col gap-32 md:mt-40 md:gap-48">
+      <div className="section-frame mt-16 flex flex-col gap-20 md:mt-24 md:gap-28">
         {copy.lineas_descriptors.map((linea, i) => (
           <LineaBlock
             key={linea.nombre}
@@ -56,9 +56,9 @@ export function LineasSection() {
 
       {/* Editorial break after line 2 — overlapping using absolute placement
           would conflict with column flow; do a divider block between 2 and 3. */}
-      <div className="relative my-24 md:my-32">
+      <div className="relative my-16 md:my-24">
         <div className="section-frame">
-          <SerifQuote align="center" size="md">
+          <SerifQuote align="center" size="lg">
             El catálogo no se compra. Se elige por uso.
           </SerifQuote>
         </div>
@@ -110,11 +110,11 @@ function LineaBlock({
             {String(index + 1).padStart(2, "0")} / {linea.nombre.replace("Línea ", "").toUpperCase()}
           </div>
 
-          <h3 className="mt-6 font-display text-[36px] font-normal leading-[1.05] md:text-[48px]">
+          <h3 className="mt-6 font-display text-[40px] font-normal leading-[1.05] md:text-[56px]">
             {linea.nombre}
           </h3>
 
-          <p className="mt-5 max-w-[28ch] text-[18px] leading-[1.45] text-[color:var(--crema-fg)]/80 md:text-[22px]">
+          <p className="mt-5 max-w-[28ch] text-[20px] leading-[1.45] text-[color:var(--crema-fg)]/80 md:text-[26px]">
             {linea.descriptor}
           </p>
 

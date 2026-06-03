@@ -6,10 +6,10 @@
    ─────────────────────────────────────────────────────────────── */
 
 @theme {
-  /* Crema palette */
-  --color-crema-canvas: #FBF9F7;
-  --color-crema-surface: #F5EFE8;
-  --color-crema-muted: #EDE5DA;
+  /* Crema palette — warm paper, matched to product-shot backdrops */
+  --color-crema-canvas: #E9D8C0;
+  --color-crema-surface: #E2CFB4;
+  --color-crema-muted: #D9C4A6;
   --color-crema-border: #D4C9BB;
   --color-crema-fg: #1A1410;
   --color-crema-fg-2: #5A4A3A;

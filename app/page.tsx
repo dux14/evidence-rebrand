@@ -16,9 +16,7 @@ export default function Page() {
       <HeroNoir />
       <SectionBeat direction="noir-to-crema" whisper="Cuatro disciplinas. Un fabricante." />
       <LineasSection />
-      <SectionBeat direction="crema-to-noir" />
       <TeardownSequence />
-      <SectionBeat direction="noir-to-crema" />
       <ManufactorySection />
       <TimelineEditorial />
       <RespaldoSection />
