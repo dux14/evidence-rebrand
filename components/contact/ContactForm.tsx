@@ -1,22 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useActionState } from "react";
 import { CINEMATIC_EASE } from "@/lib/motion";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
+import { sendContact, type ContactState } from "@/app/actions/contact";
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const [busy, setBusy] = useState(false);
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setBusy(true);
-    // Placeholder: in production wire to a server action / API route.
-    await new Promise((r) => setTimeout(r, 700));
-    setBusy(false);
-    setSubmitted(true);
-  };
+  const copy = useCopy();
+  const [state, formAction, pending] = useActionState<ContactState, FormData>(sendContact, null);
+  const submitted = state?.ok === true;
 
   return (
     <section
@@ -36,7 +29,7 @@ export function ContactForm() {
             transition={{ duration: 0.9, ease: CINEMATIC_EASE }}
             className="max-w-[16ch] font-display text-[36px] font-light leading-[1.02] md:text-[56px]"
           >
-            Agende una demostración en su clínica.
+            {copy.ui.contact_headline}
           </motion.h2>
 
           <motion.p
@@ -46,12 +39,14 @@ export function ContactForm() {
             transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.2 }}
             className="mt-6 max-w-[34ch] text-[16px] leading-[1.55] text-[color:var(--crema-fg)]/75 md:text-[18px]"
           >
-            Un técnico Evidence visita su cabina con un Pro configurado para sus protocolos.
+            {copy.ui.contact_body}
           </motion.p>
 
           <ul className="mt-10 space-y-2 text-[14px]">
-            <li className="font-mono-readout text-[10px] opacity-50">— CIUDADES CON COBERTURA</li>
-            <li>Bogotá · Medellín · Cali · Barranquilla</li>
+            <li className="font-mono-readout text-[10px] opacity-50">
+              {copy.ui.contact_cities_label}
+            </li>
+            <li>{copy.ui.contact_cities}</li>
           </ul>
         </div>
 
@@ -64,32 +59,44 @@ export function ContactForm() {
               className="border-t border-[color:var(--crema-fg)]/10 pt-8"
             >
               <p className="font-mono-readout text-[11px] text-[color:var(--ev-blue-deep)]">
-                SOLICITUD RECIBIDA
+                {copy.ui.contact_success_eyebrow}
               </p>
               <p className="mt-4 font-display text-[24px] font-light leading-[1.2] md:text-[28px]">
-                Un técnico de Evidence se comunicará con usted en menos de 48 horas hábiles.
+                {copy.ui.contact_success_msg}
               </p>
             </motion.div>
           ) : (
-            <form onSubmit={onSubmit} className="flex flex-col">
-              <Field label="Nombre" name="nombre" autoComplete="name" required />
-              <Field label="Clínica" name="clinica" autoComplete="organization" required />
+            <form action={formAction} className="flex flex-col">
+              <Field label={copy.ui.contact_fields.nombre} name="nombre" autoComplete="name" required />
+              <Field label={copy.ui.contact_fields.clinica} name="clinica" autoComplete="organization" required />
               <div className="grid grid-cols-2 gap-6">
-                <Field label="Ciudad" name="ciudad" autoComplete="address-level2" required />
-                <Field label="Teléfono" name="telefono" autoComplete="tel" type="tel" required />
+                <Field label={copy.ui.contact_fields.ciudad} name="ciudad" autoComplete="address-level2" required />
+                <Field label={copy.ui.contact_fields.telefono} name="telefono" autoComplete="tel" type="tel" required />
               </div>
 
               <button
                 type="submit"
-                disabled={busy}
+                disabled={pending}
                 className="mt-10 inline-flex h-[56px] w-fit items-center gap-3 bg-[color:var(--crema-fg)] px-7 text-[14px] font-medium tracking-tight text-[color:var(--crema-canvas)] transition-all hover:bg-[color:var(--ev-blue-deep)] disabled:opacity-50"
               >
-                {busy ? "Enviando…" : "Agendar visita"}
+                {pending ? copy.ui.contact_sending : copy.ui.contact_submit}
                 <span aria-hidden>→</span>
               </button>
 
+              {state && !state.ok ? (
+                <p role="alert" className="mt-4 text-[13px] text-[#A33B2E]">
+                  {copy.ui.contact_error_msg}
+                </p>
+              ) : null}
+
               <p className="font-mono-readout mt-6 text-[10px] text-[color:var(--crema-fg)]/45">
-                {copy.cta_secondary.toUpperCase()} · +57 1 000 0000
+                {copy.cta_secondary.toUpperCase()} ·{" "}
+                <a
+                  href={`tel:${copy.ui.contact_phone.replace(/\s/g, "")}`}
+                  className="hover:opacity-100"
+                >
+                  {copy.ui.contact_phone}
+                </a>
               </p>
             </form>
           )}

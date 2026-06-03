@@ -117,7 +117,7 @@ function TeardownScrubVideo({ progress }: { progress: ReturnType<typeof useScrol
         ref={vref}
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         poster="/video/evidence-pro-poster.jpg"
         className="h-full w-full object-contain"
       >

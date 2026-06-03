@@ -37,14 +37,6 @@ export function Footer() {
 
       <div className="mt-16 flex flex-col gap-3 border-t border-[rgba(26,20,16,0.08)] pt-6 text-[11px] md:flex-row md:items-center md:justify-between">
         <span className="font-mono-readout opacity-60">{copy.ui.footer_copyright}</span>
-        <div className="flex gap-6 font-mono-readout opacity-60">
-          <a href="#legal" className="hover:opacity-100">
-            Aviso legal
-          </a>
-          <a href="#privacidad" className="hover:opacity-100">
-            Privacidad
-          </a>
-        </div>
       </div>
     </footer>
   );
