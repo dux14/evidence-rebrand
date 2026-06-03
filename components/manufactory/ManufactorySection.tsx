@@ -9,13 +9,15 @@ import { ManufactoryPlaceholder } from "./ManufactoryPlaceholder";
 export function ManufactorySection() {
   const copy = useCopy();
   return (
+    // Noir: las macro-fotos del taller son oscuras — fundirlas al crema es
+    // imposible por CSS (auditoría 2026-06-03, RMSE ~82%). Alternativa
+    // documentada: regenerarlas con fondo crema vía Higgsfield.
     <section
       id="taller"
-      data-mode="crema"
+      data-mode="noir"
       className="relative isolate overflow-hidden py-20 md:py-28"
-      style={{ background: "var(--crema-canvas)", color: "var(--crema-fg)" }}
+      style={{ background: "var(--noir-bg-2)", color: "var(--noir-fg)" }}
     >
-      <div className="crema-grain pointer-events-none absolute inset-0" />
 
       <div className="section-frame relative">
         {/* eyebrow row */}
@@ -27,7 +29,7 @@ export function ManufactorySection() {
             {copy.ui.manufactory_eyebrow}
           </span>
         </div>
-        <div className="mt-3 h-px bg-[rgba(26,20,16,0.12)]" />
+        <div className="mt-3 h-px bg-white/15" />
 
         {/* Headline */}
         <motion.h2
@@ -45,7 +47,7 @@ export function ManufactorySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-15%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.2 }}
-          className="mt-8 max-w-[42ch] text-[18px] leading-[1.5] text-[color:var(--crema-fg)]/80 md:text-[22px]"
+          className="mt-8 max-w-[42ch] text-[18px] leading-[1.5] text-white/80 md:text-[22px]"
         >
           {copy.manufactory_subhead}
         </motion.p>
@@ -95,7 +97,7 @@ export function ManufactorySection() {
 
       {/* serif italic closer */}
       <div className="section-frame relative mt-28 md:mt-40">
-        <SerifQuote align="center" size="lg" tone="crema">
+        <SerifQuote align="center" size="lg" tone="noir">
           {copy.manufactory_quote}
         </SerifQuote>
       </div>

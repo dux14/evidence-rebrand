@@ -41,7 +41,7 @@ export function ManufactoryPlaceholder({
           />
         </div>
         {caption ? (
-          <figcaption className="font-mono-readout mt-3 text-[10px] text-[color:var(--crema-fg)]/55 md:text-[11px]">
+          <figcaption className="font-mono-readout mt-3 text-[10px] opacity-55 md:text-[11px]">
             {caption}
           </figcaption>
         ) : null}

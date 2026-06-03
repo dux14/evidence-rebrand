@@ -138,6 +138,13 @@ body {
    noise + texture (atmosphere on crema)
    ─────────────────────────────────────────────────────────────── */
 
+/* Funde los bordes del asset con el fondo de su sección (auditoría 2026-06-03):
+   máscara radial para fotos con fondo casi idéntico al canvas. */
+.asset-blend {
+  -webkit-mask-image: radial-gradient(ellipse 92% 92% at 50% 50%, #000 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse 92% 92% at 50% 50%, #000 72%, transparent 100%);
+}
+
 .crema-grain::before {
   content: "";
   position: absolute;

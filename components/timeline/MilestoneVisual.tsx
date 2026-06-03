@@ -15,14 +15,20 @@ type Variant = "1998" | "2005" | "2012" | "2018" | "2024";
 export function MilestoneVisual({ variant }: { variant: Variant }) {
   const ALT = useCopy().ui.timeline_alts;
   if (FEATURES.timeline_images) {
+    // El wrapper lleva el MISMO color de la sección (#archivo usa --crema-surface)
+    // para que el multiply funda el fondo claro de la foto exactamente al canvas,
+    // incluso dentro del stacking context que crea el clipPath de framer-motion.
     return (
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EDE5DA]">
+      <div
+        className="relative aspect-[4/5] w-full overflow-hidden"
+        style={{ background: "var(--crema-surface)" }}
+      >
         <Image
           src={`/img/timeline/${variant}.webp`}
           alt={ALT[variant]}
           fill
           sizes="(max-width: 768px) 100vw, 42vw"
-          className="object-cover"
+          className="object-cover mix-blend-multiply"
         />
       </div>
     );
