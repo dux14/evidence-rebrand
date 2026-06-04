@@ -83,7 +83,7 @@ export function Nav() {
             width={107}
             height={36}
             priority
-            className="h-[28px] w-auto md:h-[34px]"
+            className="h-[34px] w-auto md:h-[44px]"
           />
         </a>
 

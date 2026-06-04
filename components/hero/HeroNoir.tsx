@@ -147,8 +147,9 @@ export function HeroNoir() {
 }
 
 function HeadlineWithBlur({ text }: { text: string }) {
-  // Tokenize so "10" can get the dramatic blur-in.
-  const tokens = text.split(/(\s+|\.|10)/).filter(Boolean);
+  // Tokenize so "10" can get the dramatic blur-in. La puntuación queda pegada
+  // a su palabra ("Pro.", "programas.") para que el punto no salte de línea solo.
+  const tokens = text.split(/(\s+|10)/).filter(Boolean);
 
   return (
     <h1 className="hero-number text-white">

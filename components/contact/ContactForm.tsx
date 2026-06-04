@@ -44,8 +44,8 @@ export function ContactForm() {
             {copy.ui.contact_body}
           </motion.p>
 
-          <ul className="mt-10 space-y-2 text-[14px]">
-            <li className="font-mono-readout text-[10px] opacity-50">
+          <ul className="mt-10 space-y-2 text-[14px] md:text-[17px]">
+            <li className="font-mono-readout text-[10px] opacity-50 md:text-[12px]">
               {copy.ui.contact_cities_label}
             </li>
             <li>{copy.ui.contact_cities}</li>
@@ -118,7 +118,7 @@ export function ContactForm() {
                 </p>
               ) : null}
 
-              <p className="font-mono-readout mt-6 text-[10px] text-[color:var(--crema-fg)]/45">
+              <p className="font-mono-readout mt-6 text-[10px] text-[color:var(--crema-fg)]/45 md:text-[12px]">
                 {copy.cta_secondary.toUpperCase()} ·{" "}
                 <a
                   href={`tel:${copy.ui.contact_phone.replace(/\s/g, "")}`}
@@ -152,7 +152,7 @@ function Field({
 }) {
   return (
     <label className="group flex flex-col gap-2 border-b border-[color:var(--crema-fg)]/15 py-4 transition-colors focus-within:border-[color:var(--ev-blue-deep)]">
-      <span className="font-mono-readout text-[10px] text-[color:var(--crema-fg)]/55 transition-colors group-focus-within:text-[color:var(--ev-blue-deep)]">
+      <span className="font-mono-readout text-[10px] text-[color:var(--crema-fg)]/55 transition-colors group-focus-within:text-[color:var(--ev-blue-deep)] md:text-[12px]">
         {label}
         {required ? " *" : ""}
       </span>
@@ -162,7 +162,7 @@ function Field({
         required={required}
         autoComplete={autoComplete}
         defaultValue={defaultValue}
-        className="bg-transparent text-[18px] outline-none placeholder:text-[color:var(--crema-fg)]/30"
+        className="bg-transparent text-[18px] outline-none placeholder:text-[color:var(--crema-fg)]/30 md:text-[20px]"
       />
     </label>
   );

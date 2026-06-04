@@ -53,8 +53,9 @@ export function TeardownSequence() {
         />
 
         {/* meta-eyebrow row — anclada al viewport pineado, no al grid centrado,
-            para que el indicador SCROLL no pise el titular del primer beat */}
-        <div className="absolute inset-x-0 top-8">
+            para que el indicador SCROLL no pise el titular del primer beat.
+            top-20 la deja debajo del header fijo (72px). */}
+        <div className="absolute inset-x-0 top-20">
           <div className="section-frame flex items-center justify-between">
             <span className="font-mono-readout text-[11px] text-white/55 md:text-[12px]">
               {copy.ui.teardown_eyebrow}
@@ -67,9 +68,11 @@ export function TeardownSequence() {
           </div>
         </div>
 
-        <div className="section-frame relative grid w-full grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-6">
+        {/* En mobile el grid no se centra: pt despeja la fila meta y el video
+            se acorta para que beats + specs entren en la pantalla. */}
+        <div className="section-frame relative grid w-full grid-cols-1 gap-6 pt-32 md:grid-cols-12 md:items-center md:gap-6 md:pt-0">
           {/* product anchor centered */}
-          <div className="relative mx-auto h-[60vh] w-full max-w-[520px] md:col-span-6 md:col-start-2">
+          <div className="relative mx-auto h-[34vh] w-full max-w-[520px] md:col-span-6 md:col-start-1 md:h-[72vh] md:max-w-[680px]">
             {FEATURES.teardown_video ? (
               <TeardownScrubVideo progress={scrollYProgress} />
             ) : (
@@ -81,13 +84,13 @@ export function TeardownSequence() {
           <div className="md:col-span-5 md:col-start-8">
             {/* Los beats son absolute (crossfade); este wrapper reserva su altura
                 en el flujo para que SpecsMono no se solape con el título. */}
-            <div className="relative min-h-[280px] md:min-h-[400px]">
+            <div className="relative min-h-[220px] md:min-h-[440px]">
               {beats.map((b, i) => (
                 <CrossfadeBeat key={i} beat={b} range={beatRange(i)} progress={scrollYProgress} />
               ))}
             </div>
 
-            <div className="relative mt-12">
+            <div className="relative mt-6 md:mt-12">
               <SpecsMono specs={copy.evidence_pro_specs} />
             </div>
           </div>
@@ -203,11 +206,11 @@ function CrossfadeBeat({
   const y = useTransform(progress, [...range], [16, 0, 0, -12]);
   return (
     <motion.div style={{ opacity, y }} className="absolute inset-x-0 top-0">
-      <div className="font-mono-readout text-[11px] text-white/55 md:text-[12px]">{beat.eyebrow}</div>
-      <h3 className="mt-6 max-w-[14ch] font-display text-[32px] font-light leading-[1.05] md:text-[56px]">
+      <div className="font-mono-readout text-[11px] text-white/55 md:text-[13px]">{beat.eyebrow}</div>
+      <h3 className="mt-4 max-w-[14ch] font-display text-[30px] font-light leading-[1.05] md:mt-6 md:text-[64px]">
         {beat.title}
       </h3>
-      <p className="mt-5 max-w-[34ch] text-[16px] leading-[1.55] text-white/65 md:text-[18px]">
+      <p className="mt-4 max-w-[34ch] text-[15px] leading-[1.55] text-white/65 md:mt-5 md:max-w-[36ch] md:text-[20px]">
         {beat.body}
       </p>
     </motion.div>

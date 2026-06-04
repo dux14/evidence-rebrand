@@ -11,7 +11,7 @@ export function SpecsMono({ specs }: { specs: EvidenceSpec[] }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20%" }}
       transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.2 }}
-      className="font-mono-readout text-[12px] text-white"
+      className="font-mono-readout text-[12px] text-white md:text-[14px]"
     >
       {specs.map((s, i) => (
         <div
