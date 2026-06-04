@@ -17,7 +17,7 @@ export function LineasSection() {
       id="lineas"
       data-mode="crema"
       className="relative isolate overflow-hidden py-20 md:py-28"
-      style={{ background: "var(--crema-canvas)", color: "var(--crema-fg)" }}
+      style={{ background: "var(--crema-ivory)", color: "var(--crema-fg)" }}
     >
       <div className="crema-grain pointer-events-none absolute inset-0" />
 

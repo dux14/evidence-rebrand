@@ -39,3 +39,6 @@ ASSETS-WALKTHROUGH.md
 
 # superpowers brainstorm sessions
 .superpowers/
+
+# Playwright MCP session artifacts
+.playwright-mcp/

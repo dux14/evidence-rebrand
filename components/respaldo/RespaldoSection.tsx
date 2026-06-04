@@ -12,7 +12,7 @@ export function RespaldoSection() {
       id="respaldo"
       data-mode="crema"
       className="relative isolate overflow-hidden py-28 md:py-40"
-      style={{ background: "var(--crema-canvas)", color: "var(--crema-fg)" }}
+      style={{ background: "var(--crema-muted)", color: "var(--crema-fg)" }}
     >
       <div className="crema-grain pointer-events-none absolute inset-0" />
 
