@@ -40,7 +40,7 @@ export function HeroNoir() {
       />
 
       {/* meta row top — sits below nav */}
-      <div className="section-frame mt-[88px] flex items-center justify-between text-white/55 md:mt-[104px]">
+      <div className="section-frame mt-[88px] flex items-center justify-between text-white/55">
         <span className="font-mono-readout text-[11px] md:text-[12px]">
           {copy.ui.hero_meta_location}
         </span>
@@ -50,18 +50,32 @@ export function HeroNoir() {
       </div>
 
       {/* central composition */}
-      <div className="section-frame relative grid flex-1 grid-cols-1 items-center gap-12 py-12 md:grid-cols-12 md:gap-6 md:py-16">
+      <div className="section-frame relative grid flex-1 grid-cols-1 items-center gap-12 py-12 md:grid-cols-12 md:gap-6 md:py-10">
         {/* Headline — left */}
         <div className="md:col-span-5">
           <HeadlineWithBlur text={copy.hero_headline} />
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: CINEMATIC_EASE, delay: 1.6 }}
-            className="font-serif-italic mt-10 max-w-[26ch] text-[20px] leading-[1.25] text-white/85 md:text-[28px]"
+            transition={{ duration: 0.9, ease: CINEMATIC_EASE, delay: 1.0 }}
+            className="font-serif-italic mt-6 max-w-[26ch] text-[20px] leading-[1.25] text-white/85 md:text-[28px]"
           >
             {copy.hero_subheadline}
           </motion.p>
+
+          {/* CTA primario en la columna del titular: visible sin scroll en
+              1440×900 y 375×812 (auditoría 2026-06-04 — antes vivía en la fila
+              inferior, siempre bajo el fold). */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 1.2 }}
+            className="mt-8"
+          >
+            <MagneticButton tone="noir" href="#contacto">
+              {copy.cta_primary}
+            </MagneticButton>
+          </motion.div>
         </div>
 
         {/* Product anchor — center / right */}
@@ -94,13 +108,13 @@ export function HeroNoir() {
         </div>
       </div>
 
-      {/* bottom row: display panel meta + CTA */}
+      {/* bottom row: display panel meta */}
       <div className="section-frame relative flex flex-col gap-8 pb-12 md:flex-row md:items-end md:justify-between md:pb-16">
         {/* mono display panel */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 1.8 }}
+          transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 1.4 }}
           className="font-mono-readout flex flex-col gap-1.5 text-[11px] text-white/60 md:text-[12px]"
         >
           {copy.ui.hero_readout_lines.map((line, i) => (
@@ -108,16 +122,6 @@ export function HeroNoir() {
               {line}
             </span>
           ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 2.0 }}
-        >
-          <MagneticButton tone="noir" href="#contacto">
-            {copy.cta_primary}
-          </MagneticButton>
         </motion.div>
       </div>
 
@@ -127,7 +131,7 @@ export function HeroNoir() {
           aria-hidden
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.55 }}
-          transition={{ delay: 2.4, duration: 0.8 }}
+          transition={{ delay: 1.8, duration: 0.8 }}
           className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2"
         >
           <motion.div
@@ -149,7 +153,10 @@ export function HeroNoir() {
 function HeadlineWithBlur({ text }: { text: string }) {
   // Tokenize so "10" can get the dramatic blur-in. La puntuación queda pegada
   // a su palabra ("Pro.", "programas.") para que el punto no salte de línea solo.
-  const tokens = text.split(/(\s+|10)/).filter(Boolean);
+  // Sin spans de espacio: un espacio entre inline-blocks no colapsa al inicio
+  // de línea e indentaba la palabra tras el salto (auditoría 2026-06-04);
+  // el margen derecho hace de espacio y desaparece en el quiebre de línea.
+  const tokens = text.split(/(\s+|10)/).filter((t) => !/^\s+$/.test(t));
 
   return (
     <h1 className="hero-number text-white">
@@ -161,24 +168,21 @@ function HeadlineWithBlur({ text }: { text: string }) {
               initial={{ opacity: 0, filter: "blur(8px)", scale: 1.06 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
               transition={{ duration: 0.9, ease: CINEMATIC_EASE, delay: 0.9 }}
-              className="inline-block"
+              className="mr-[0.24em] inline-block"
               style={{ color: "#FFFFFF" }}
             >
               {tok}
             </motion.span>
           );
         }
-        if (/^\s+$/.test(tok)) {
-          return <span key={i}>{" "}</span>;
-        }
-        const wordDelay = 0.2 + i * 0.06;
+        const wordDelay = 0.2 + i * 0.1;
         return (
           <motion.span
             key={i}
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: CINEMATIC_EASE, delay: wordDelay }}
-            className="inline-block"
+            className="mr-[0.24em] inline-block"
           >
             {tok}
           </motion.span>

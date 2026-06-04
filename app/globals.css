@@ -137,8 +137,11 @@ button:not(:disabled) {
   font-weight: 600;
   /* Piso 64px: a 375px de viewport la palabra más larga ("programas.")
      debe caber en ~327px de columna; el piso anterior de 96px la desbordaba
-     (auditoría 2026-06-03). 14vw se mantiene para no alterar tablet/desktop. */
-  font-size: clamp(64px, 14vw, 160px);
+     (auditoría 2026-06-03). 14vw se mantiene para no alterar tablet/desktop.
+     Techo 148px (antes 160): con el CTA en la columna del titular, las 4
+     líneas + subhead + CTA deben entrar en 900px de viewport (fold 1440×900,
+     auditoría 2026-06-04). Solo afecta viewports ≥ ~1057px. */
+  font-size: clamp(64px, 14vw, 148px);
   line-height: 0.92;
   letter-spacing: -0.04em;
 }

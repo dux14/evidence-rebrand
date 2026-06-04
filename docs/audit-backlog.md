@@ -32,6 +32,34 @@
 | P2-5 | Verificar que `app/opengraph-image.png` refleje el branding actual (no auditado en esta sesión) | `app/opengraph-image.png` |
 | P2-6 | Medir LCP/CLS reales en producción tras el deploy (dev-only auditado) | evidence-rebrand.vercel.app |
 
+## Auditoría 2026-06-04 (lentes redesign + emil) — segunda pasada
+
+### Corregidos en `fix/audit-quick-wins`
+
+| # | Hallazgo | Fix |
+|---|---|---|
+| A1 | CTA primario bajo el fold en desktop (y=954 @1440×900) y móvil | CTA movido a la columna del titular; `hero-number` cap 160→148px; paddings ajustados. Verificado: CTA bottom 860 @900/864, 481 @812 |
+| A2 | CTA invisible 2.0s por cadena de delays de entrada | Cadena recortada: subhead 1.0s, CTA 1.2s, readout 1.4s, cue 1.8s |
+| B1 | " Pro." indentado 27px — span de espacio con NBSP (` `) entre inline-blocks no colapsa al inicio de línea | Spans de espacio eliminados; `mr-[0.24em]` en cada palabra |
+| B2 | Contador "04 / 04" en eyebrow de líneas (length / length) | Ahora "04 / 12" (líneas / instrumentos, computado) |
+| C1 | Flecha del CTA: `whileHover` en el span interno nunca disparaba (verificado) | `group-hover:translate-x-1` CSS (verificado: translate 4px) |
+| C2 | Sin pressed state en MagneticButton ni submit | `whileTap scale 0.97` (gated reduced-motion) / `active:scale-[0.98]` |
+| C3 | `transition-all` en submit del form | `transition-[background-color,transform,opacity]` |
+| D1a | Footer sin email (existía en JSON-LD) | `contact_email` en copy ES/EN + mailto en footer |
+
+### Pendientes nuevos (decisión o contenido)
+
+| # | Hallazgo | Anchor |
+|---|---|---|
+| N1 | "programs."/"programas." pisa la base del producto a 1440px — ¿overlap editorial intencional o limitar? | `HeroNoir.tsx` grid central |
+| N2 | Foto del hito 1998 dice "BOGOTÁ, 1996" en el letrero — regenerar asset o cambiar año del milestone | asset `MilestoneVisual` variant 1998 |
+| N3 | Footer sin enlaces legales (privacidad / términos) — requiere páginas con contenido real del cliente, no placeholder | `Footer.tsx` + páginas nuevas |
+| N4 | Sin 404 personalizada | `app/not-found.tsx` |
+| N5 | Cortes duros entre bandas: solo hay un SectionBeat (hero→líneas); líneas→pro y taller→archivo son cortes secos — ¿beats en todos los límites o solo hero? | `app/page.tsx` |
+| N6 | `backdrop-filter` del header salta sin transición al cruzar scroll>24 | `Nav.tsx:80` |
+| N7 | `prefers-reduced-motion` global a 0.001ms mata también fades de comprensión — mantener opacity/color ~200ms | `globals.css:188-194` |
+| N8 | `whileHover y:-2` en PromiseCard sin gate de touch | `RespaldoSection.tsx:67` |
+
 ## Verificación de cierre de sesión
 
 - Build: ✅ verde (`next build`)
