@@ -2,7 +2,13 @@
 
 import { Resend } from "resend";
 
-export type ContactState = { ok: true } | { ok: false; error: "invalid" | "send" } | null;
+export type ContactValues = { nombre: string; clinica: string; ciudad: string; telefono: string };
+// `values` viaja en el estado de error: React 19 resetea el form tras la
+// action y sin esto el usuario perdería lo que escribió.
+export type ContactState =
+  | { ok: true }
+  | { ok: false; error: "invalid" | "send"; values: ContactValues }
+  | null;
 
 const MAX = 200;
 
@@ -13,16 +19,17 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
   const clinica = field("clinica");
   const ciudad = field("ciudad");
   const telefono = field("telefono");
+  const values: ContactValues = { nombre, clinica, ciudad, telefono };
 
   if (!nombre || !clinica || !ciudad || !/^[+\d][\d\s().-]{6,}$/.test(telefono)) {
-    return { ok: false, error: "invalid" };
+    return { ok: false, error: "invalid", values };
   }
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
   if (!apiKey || !to) {
     console.error("contact: missing RESEND_API_KEY or CONTACT_TO_EMAIL");
-    return { ok: false, error: "send" };
+    return { ok: false, error: "send", values };
   }
 
   const resend = new Resend(apiKey);
@@ -43,7 +50,7 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
 
   if (error) {
     console.error("contact: resend error", error);
-    return { ok: false, error: "send" };
+    return { ok: false, error: "send", values };
   }
   return { ok: true };
 }

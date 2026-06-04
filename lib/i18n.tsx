@@ -36,6 +36,12 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, locale);
     document.documentElement.lang = locale === "es" ? "es-CO" : "en";
+    // El metadata SSR queda en ES (idioma por defecto); aquí solo se ajusta
+    // lo visible para el usuario al cambiar de idioma en el cliente.
+    document.title = DICTIONARIES[locale].ui.meta_title;
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute("content", DICTIONARIES[locale].ui.meta_description);
   }, [locale]);
 
   return (

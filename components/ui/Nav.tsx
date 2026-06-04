@@ -11,6 +11,7 @@ export function Nav() {
   const [mode, setMode] = useState<Mode>("noir");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const copy = useCopy();
   const { locale, setLocale } = useLocale();
 
@@ -25,6 +26,7 @@ export function Nav() {
           if (entry.isIntersecting) {
             const m = entry.target.getAttribute("data-mode") as Mode | null;
             if (m) setMode(m);
+            if (entry.target.id) setActiveSection(entry.target.id);
           }
         }
       },
@@ -96,7 +98,10 @@ export function Nav() {
               ) : null}
               <a
                 href={l.href}
-                className="text-[10px] font-medium uppercase tracking-[0.22em] transition-opacity hover:opacity-60"
+                aria-current={l.href === `#${activeSection}` ? "true" : undefined}
+                className={`text-[10px] font-medium uppercase tracking-[0.22em] transition-opacity ${
+                  l.href === `#${activeSection}` ? "opacity-100" : "opacity-55 hover:opacity-100"
+                }`}
               >
                 {l.label}
               </a>
@@ -137,7 +142,9 @@ export function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 top-[72px] z-40 flex flex-col justify-between bg-black px-6 pb-8 pt-10 text-white md:hidden"
+            // h-[calc] en vez de inset-0: el backdrop-filter del header lo vuelve
+            // containing block de este fixed, y bottom:0 colapsaba el overlay.
+            className="fixed inset-x-0 top-[72px] z-40 flex h-[calc(100dvh-72px)] flex-col justify-between overflow-y-auto bg-black px-6 pb-8 pt-10 text-white md:hidden"
           >
             <ul className="flex flex-col gap-7">
               {links.map((l, i) => (

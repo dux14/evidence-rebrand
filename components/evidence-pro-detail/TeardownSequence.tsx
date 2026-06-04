@@ -52,9 +52,10 @@ export function TeardownSequence() {
           }}
         />
 
-        <div className="section-frame relative grid w-full grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-6">
-          {/* meta-eyebrow row */}
-          <div className="absolute inset-x-0 top-8 flex items-center justify-between px-[inherit]">
+        {/* meta-eyebrow row — anclada al viewport pineado, no al grid centrado,
+            para que el indicador SCROLL no pise el titular del primer beat */}
+        <div className="absolute inset-x-0 top-8">
+          <div className="section-frame flex items-center justify-between">
             <span className="font-mono-readout text-[11px] text-white/55 md:text-[12px]">
               {copy.ui.teardown_eyebrow}
             </span>
@@ -64,7 +65,9 @@ export function TeardownSequence() {
               label={copy.ui.teardown_scroll_label}
             />
           </div>
+        </div>
 
+        <div className="section-frame relative grid w-full grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-6">
           {/* product anchor centered */}
           <div className="relative mx-auto h-[60vh] w-full max-w-[520px] md:col-span-6 md:col-start-2">
             {FEATURES.teardown_video ? (

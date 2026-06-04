@@ -55,13 +55,21 @@ export function ManufactorySection() {
 
       {/* Wide editorial photo */}
       <div className="section-frame relative mt-20 md:mt-28">
-        <motion.div
-          initial={{ clipPath: "inset(0 50% 0 50%)" }}
-          whileInView={{ clipPath: "inset(0 0% 0 0%)" }}
-          viewport={{ once: true, margin: "-15%" }}
-          transition={{ duration: 1.4, ease: CINEMATIC_EASE }}
-        >
-          <ManufactoryPlaceholder variant="wide" />
+        {/* El clip-path va en variants de un hijo: si el propio elemento
+            observado arranca clipeado a área 0, el IntersectionObserver nunca
+            lo reporta visible y el reveal queda en deadlock (Chrome). */}
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-15%" }}>
+          <motion.div
+            variants={{
+              hidden: { clipPath: "inset(0 50% 0 50%)" },
+              show: {
+                clipPath: "inset(0 0% 0 0%)",
+                transition: { duration: 1.4, ease: CINEMATIC_EASE },
+              },
+            }}
+          >
+            <ManufactoryPlaceholder variant="wide" />
+          </motion.div>
         </motion.div>
       </div>
 

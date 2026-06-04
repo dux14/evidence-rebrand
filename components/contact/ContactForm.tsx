@@ -10,6 +10,8 @@ export function ContactForm() {
   const copy = useCopy();
   const [state, formAction, pending] = useActionState<ContactState, FormData>(sendContact, null);
   const submitted = state?.ok === true;
+  // React 19 resetea el form tras la action; rehidratamos con lo enviado.
+  const prev = state && !state.ok ? state.values : undefined;
 
   return (
     <section
@@ -67,11 +69,36 @@ export function ContactForm() {
             </motion.div>
           ) : (
             <form action={formAction} className="flex flex-col">
-              <Field label={copy.ui.contact_fields.nombre} name="nombre" autoComplete="name" required />
-              <Field label={copy.ui.contact_fields.clinica} name="clinica" autoComplete="organization" required />
+              <Field
+                label={copy.ui.contact_fields.nombre}
+                name="nombre"
+                autoComplete="name"
+                required
+                defaultValue={prev?.nombre}
+              />
+              <Field
+                label={copy.ui.contact_fields.clinica}
+                name="clinica"
+                autoComplete="organization"
+                required
+                defaultValue={prev?.clinica}
+              />
               <div className="grid grid-cols-2 gap-6">
-                <Field label={copy.ui.contact_fields.ciudad} name="ciudad" autoComplete="address-level2" required />
-                <Field label={copy.ui.contact_fields.telefono} name="telefono" autoComplete="tel" type="tel" required />
+                <Field
+                  label={copy.ui.contact_fields.ciudad}
+                  name="ciudad"
+                  autoComplete="address-level2"
+                  required
+                  defaultValue={prev?.ciudad}
+                />
+                <Field
+                  label={copy.ui.contact_fields.telefono}
+                  name="telefono"
+                  autoComplete="tel"
+                  type="tel"
+                  required
+                  defaultValue={prev?.telefono}
+                />
               </div>
 
               <button
@@ -85,7 +112,9 @@ export function ContactForm() {
 
               {state && !state.ok ? (
                 <p role="alert" className="mt-4 text-[13px] text-[#A33B2E]">
-                  {copy.ui.contact_error_msg}
+                  {state.error === "invalid"
+                    ? copy.ui.contact_error_invalid
+                    : copy.ui.contact_error_msg}
                 </p>
               ) : null}
 
@@ -112,12 +141,14 @@ function Field({
   type = "text",
   required,
   autoComplete,
+  defaultValue,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   autoComplete?: string;
+  defaultValue?: string;
 }) {
   return (
     <label className="group flex flex-col gap-2 border-b border-[color:var(--crema-fg)]/15 py-4 transition-colors focus-within:border-[color:var(--ev-blue-deep)]">
@@ -130,6 +161,7 @@ function Field({
         name={name}
         required={required}
         autoComplete={autoComplete}
+        defaultValue={defaultValue}
         className="bg-transparent text-[18px] outline-none placeholder:text-[color:var(--crema-fg)]/30"
       />
     </label>

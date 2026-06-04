@@ -60,6 +60,9 @@ export type UiCopy = {
   contact_sending: string;
   contact_success_eyebrow: string;
   contact_success_msg: string;
+  meta_title: string;
+  meta_description: string;
+  contact_error_invalid: string;
   contact_error_msg: string;
   contact_phone: string;
   footer_sedes_label: string;
