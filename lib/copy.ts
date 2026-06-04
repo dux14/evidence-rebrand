@@ -65,6 +65,7 @@ export type UiCopy = {
   contact_error_invalid: string;
   contact_error_msg: string;
   contact_phone: string;
+  contact_email: string;
   footer_sedes_label: string;
   footer_cities: string[];
   footer_copyright: string;

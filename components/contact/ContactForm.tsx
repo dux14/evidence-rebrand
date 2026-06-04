@@ -104,7 +104,7 @@ export function ContactForm() {
               <button
                 type="submit"
                 disabled={pending}
-                className="mt-10 inline-flex h-[56px] w-fit items-center gap-3 bg-[color:var(--crema-fg)] px-7 text-[14px] font-medium tracking-tight text-[color:var(--crema-canvas)] transition-all hover:bg-[color:var(--ev-blue-deep)] disabled:opacity-50"
+                className="mt-10 inline-flex h-[56px] w-fit items-center gap-3 bg-[color:var(--crema-fg)] px-7 text-[14px] font-medium tracking-tight text-[color:var(--crema-canvas)] transition-[background-color,transform,opacity] duration-200 hover:bg-[color:var(--ev-blue-deep)] active:scale-[0.98] disabled:opacity-50"
               >
                 {pending ? copy.ui.contact_sending : copy.ui.contact_submit}
                 <span aria-hidden>→</span>

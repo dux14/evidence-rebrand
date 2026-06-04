@@ -39,12 +39,20 @@ export function Footer() {
 
       <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-6 text-[11px] md:flex-row md:items-center md:justify-between md:text-[12px]">
         <span className="font-mono-readout opacity-60">{copy.ui.footer_copyright}</span>
-        <a
-          href={`tel:${copy.ui.contact_phone.replace(/\s/g, "")}`}
-          className="font-mono-readout opacity-60 transition-opacity hover:opacity-100"
-        >
-          {copy.ui.contact_phone}
-        </a>
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-8">
+          <a
+            href={`mailto:${copy.ui.contact_email}`}
+            className="font-mono-readout opacity-60 transition-opacity hover:opacity-100"
+          >
+            {copy.ui.contact_email.toUpperCase()}
+          </a>
+          <a
+            href={`tel:${copy.ui.contact_phone.replace(/\s/g, "")}`}
+            className="font-mono-readout opacity-60 transition-opacity hover:opacity-100"
+          >
+            {copy.ui.contact_phone}
+          </a>
+        </div>
       </div>
     </footer>
   );

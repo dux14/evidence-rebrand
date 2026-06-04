@@ -44,17 +44,17 @@ export function MagneticButton({ tone = "noir", children, href, ...rest }: Props
       : "bg-[color:var(--crema-fg)] text-[color:var(--crema-canvas)] hover:bg-[color:var(--crema-fg)]/90";
 
   const className = `group inline-flex h-[52px] items-center gap-3 px-7 text-[14px] font-medium tracking-tight transition-colors ${styles}`;
+  // Flecha con group-hover CSS: whileHover en el span solo disparaba al
+  // hoverear la flecha misma (14px) — verificado roto en auditoría 2026-06-04.
   const content = (
     <>
       <span>{children}</span>
-      <motion.span
+      <span
         aria-hidden
-        className="inline-block"
-        whileHover={{ x: 4 }}
-        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="inline-block transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"
       >
         →
-      </motion.span>
+      </span>
     </>
   );
 
@@ -68,6 +68,7 @@ export function MagneticButton({ tone = "noir", children, href, ...rest }: Props
         onMouseMove={onMove}
         onMouseLeave={onLeave}
         style={{ x: sx, y: sy }}
+        whileTap={reduce ? undefined : { scale: 0.97 }}
         className={className}
       >
         {content}
@@ -80,6 +81,7 @@ export function MagneticButton({ tone = "noir", children, href, ...rest }: Props
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       style={{ x: sx, y: sy }}
+      whileTap={reduce ? undefined : { scale: 0.97 }}
       className={className}
       {...rest}
     >

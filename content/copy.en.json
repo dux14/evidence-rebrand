@@ -140,6 +140,7 @@
     "contact_error_invalid": "Check the phone number: digits only, with country code if needed.",
     "contact_error_msg": "We could not send your request. Try again or call us.",
     "contact_phone": "+57 310 3247091",
+    "contact_email": "servicioalcliente@evidence.com.co",
     "footer_sedes_label": "Locations",
     "footer_cities": ["Bogotá", "Medellín", "Cali"],
     "footer_copyright": "© Evidence S.A.S · NIT 800.XXX.XXX-X"

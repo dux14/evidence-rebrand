@@ -27,9 +27,13 @@ export function LineasSection() {
           <span className="font-mono-readout text-[11px] opacity-70 md:text-[12px]">
             {copy.ui.lineas_eyebrow}
           </span>
+          {/* líneas / instrumentos — ecoa el titular "Cuatro líneas. Doce
+              instrumentos." (antes imprimía length / length: "04 / 04"). */}
           <span className="font-mono-readout text-[11px] opacity-70 md:text-[12px]">
             {String(copy.lineas_descriptors.length).padStart(2, "0")} /{" "}
-            {String(copy.lineas_descriptors.length).padStart(2, "0")}
+            {String(
+              copy.lineas_descriptors.reduce((n, l) => n + l.tecnologias.length, 0)
+            ).padStart(2, "0")}
           </span>
         </div>
         <div className="mt-3 h-px bg-[rgba(26,20,16,0.12)]" />
