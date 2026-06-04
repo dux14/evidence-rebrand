@@ -175,6 +175,24 @@ button:not(:disabled) {
 }
 
 /* ───────────────────────────────────────────────────────────────
+   skip link (a11y) — visible solo con foco de teclado
+   ─────────────────────────────────────────────────────────────── */
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 100;
+  padding: 14px 22px;
+  background: var(--color-crema-fg);
+  color: var(--color-crema-ivory);
+}
+
+.skip-link:focus-visible {
+  top: 12px;
+}
+
+/* ───────────────────────────────────────────────────────────────
    focus ring (a11y)
    ─────────────────────────────────────────────────────────────── */
 
@@ -188,11 +206,19 @@ button:not(:disabled) {
    reduced motion
    ─────────────────────────────────────────────────────────────── */
 
+/* Reduced motion ≠ cero feedback: se elimina el movimiento (transform,
+   animaciones) pero los fades de comprensión (opacity/color) se mantienen
+   suaves y cortos. Las animaciones JS las gestiona useReducedMotion. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  :where(a, button, input, textarea, label, [class*="transition"]) {
+    transition-property: opacity, color, background-color, border-color !important;
+    transition-duration: 160ms !important;
   }
 }
 

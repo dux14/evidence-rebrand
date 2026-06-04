@@ -64,8 +64,9 @@ function PromiseCard({ promise, delay }: { promise: RespaldoPromise; delay: numb
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay }}
-      whileHover={{ y: -2 }}
-      className="group relative flex flex-col gap-8 border border-[rgba(26,20,16,0.10)] bg-[color:var(--crema-surface)] p-7 transition-colors hover:border-[color:var(--ev-blue-deep)] md:p-10"
+      // Hover por CSS (no whileHover): el variant hover: de Tailwind v4 ya
+      // está gateado con @media (hover: hover) — en táctil no queda pegado (N8).
+      className="group relative flex flex-col gap-8 border border-[rgba(26,20,16,0.10)] bg-[color:var(--crema-surface)] p-7 transition-[border-color,translate] duration-300 hover:-translate-y-0.5 hover:border-[color:var(--ev-blue-deep)] md:p-10"
     >
       <div className="flex items-center justify-between">
         <span className="font-mono-readout text-[11px] text-[color:var(--crema-fg)]/70 md:text-[12px]">

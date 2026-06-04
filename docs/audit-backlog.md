@@ -47,6 +47,20 @@
 | C3 | `transition-all` en submit del form | `transition-[background-color,transform,opacity]` |
 | D1a | Footer sin email (existía en JSON-LD) | `contact_email` en copy ES/EN + mailto en footer |
 
+### Corregidos en `fix/quick-wins-2` (2026-06-04, segunda tanda)
+
+| # | Hallazgo | Fix |
+|---|---|---|
+| P1-2 | Menú móvil sin Escape ni focus-trap | Escape cierra + devuelve foco al toggle; Tab cicla dentro del header. Verificado: 12 tabs sin escapar, scroll desbloqueado al cerrar |
+| P1-3 | Form sin anti-spam | Honeypot `sitio` (oculto, tabIndex -1) + éxito silencioso en `contact.ts` si llega lleno |
+| P1-4 | Sin skip-link | "Saltar al contenido" → `#contenido`; Nav y Footer movidos fuera de `<main>` (semántica + orden de tab correcto) |
+| N4 | Sin 404 personalizada | `app/not-found.tsx` noir de marca con CTA de regreso |
+| N6 | `backdrop-filter` del header saltaba | `transition: backdrop-filter 400ms` |
+| N7 | reduced-motion mataba fades de comprensión | opacity/color mantienen 160ms; transforms eliminados |
+| N8 | Hover de PromiseCard sin gate táctil | `whileHover` → CSS `hover:-translate-y-0.5` (Tailwind v4 ya gatea con `hover:hover`) |
+| P2-1 | `SectionHeader.tsx` dead code | Eliminado (0 imports verificados) |
+| P2-3 | Copyright sin año | Año dinámico en Footer |
+
 ### Pendientes nuevos (decisión o contenido)
 
 | # | Hallazgo | Anchor |

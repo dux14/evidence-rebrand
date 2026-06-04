@@ -15,6 +15,13 @@ const MAX = 200;
 export async function sendContact(_prev: ContactState, formData: FormData): Promise<ContactState> {
   const field = (k: string) => String(formData.get(k) ?? "").trim().slice(0, MAX);
 
+  // Honeypot anti-spam: "sitio" está oculto para humanos (CSS + tabIndex -1);
+  // si llega con valor es un bot. Respondemos éxito silencioso para no
+  // delatar el mecanismo. (P1-3, auditoría 2026-06-04)
+  if (field("sitio")) {
+    return { ok: true };
+  }
+
   const nombre = field("nombre");
   const clinica = field("clinica");
   const ciudad = field("ciudad");

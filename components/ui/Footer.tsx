@@ -38,7 +38,10 @@ export function Footer() {
       </div>
 
       <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-6 text-[11px] md:flex-row md:items-center md:justify-between md:text-[12px]">
-        <span className="font-mono-readout opacity-60">{copy.ui.footer_copyright}</span>
+        {/* Año dinámico (P2-3): el copy trae "© Evidence…" sin año. */}
+        <span className="font-mono-readout opacity-60">
+          {copy.ui.footer_copyright.replace("©", `© ${new Date().getFullYear()}`)}
+        </span>
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-8">
           <a
             href={`mailto:${copy.ui.contact_email}`}
