@@ -61,18 +61,25 @@
 | P2-1 | `SectionHeader.tsx` dead code | Eliminado (0 imports verificados) |
 | P2-3 | Copyright sin año | Año dinámico en Footer |
 
-### Pendientes nuevos (decisión o contenido)
+### Resueltos en `feat/audit-decisions` (2026-06-04, decisiones de Samu)
 
-| # | Hallazgo | Anchor |
+| # | Decisión | Fix |
 |---|---|---|
-| N1 | "programs."/"programas." pisa la base del producto a 1440px — ¿overlap editorial intencional o limitar? | `HeroNoir.tsx` grid central |
-| N2 | Foto del hito 1998 dice "BOGOTÁ, 1996" en el letrero — regenerar asset o cambiar año del milestone | asset `MilestoneVisual` variant 1998 |
-| N3 | Footer sin enlaces legales (privacidad / términos) — requiere páginas con contenido real del cliente, no placeholder | `Footer.tsx` + páginas nuevas |
-| N4 | Sin 404 personalizada | `app/not-found.tsx` |
-| N5 | Cortes duros entre bandas: solo hay un SectionBeat (hero→líneas); líneas→pro y taller→archivo son cortes secos — ¿beats en todos los límites o solo hero? | `app/page.tsx` |
-| N6 | `backdrop-filter` del header salta sin transición al cruzar scroll>24 | `Nav.tsx:80` |
-| N7 | `prefers-reduced-motion` global a 0.001ms mata también fades de comprensión — mantener opacity/color ~200ms | `globals.css:188-194` |
-| N8 | `whileHover y:-2` en PromiseCard sin gate de touch | `RespaldoSection.tsx:67` |
+| N1 | "Limitar el ancho" | `hero-number` cap 148→128px: "programas." termina en x=778, antes de la máquina visible; titular queda en 3 líneas compactas |
+| N5 | "Beats dramatizados" | SectionBeat parametrizado (`whisperKey`, `cremaHex`) + 2 beats nuevos: líneas→pro ("Por dentro, sin secretos.") y taller→archivo ("Tres décadas en el archivo.", canvas #E9D8C0) |
+| P1-5 | "Agrega el email" | Campo email requerido en el form (copy ES/EN, tipos, action con validación + `replyTo` en Resend) |
+
+### Pendientes (decisión tomada: después / contenido del cliente)
+
+| # | Hallazgo | Estado |
+|---|---|---|
+| N2 | Foto del hito 1998 dice "BOGOTÁ, 1996" | **Diferido por Samu** — regenerar asset después |
+| P1-6 | Fotos del taller noir vs crema | **Diferido por Samu** — regenerar imágenes después |
+| N3 | Enlaces legales (privacidad/términos) | Espera contenido real del cliente |
+| P1-1 | NIT placeholder | Espera dato real del cliente |
+| P2-2 | Prueba social | Espera contenido del cliente |
+| — | Claves Resend en Vercel | Espera credenciales |
+| — | Quitar `robots: noindex` | Al conectar dominio real |
 
 ## Verificación de cierre de sesión
 

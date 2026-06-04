@@ -20,8 +20,12 @@ export default function Page() {
         <HeroNoir />
         <SectionBeat direction="noir-to-crema" />
         <LineasSection />
+        {/* Beats en TODOS los límites noir↔crema (N5): antes solo el hero
+            tenía transición dramatizada y el resto eran cortes secos. */}
+        <SectionBeat direction="crema-to-noir" whisperKey="beat_whisper_pro" />
         <TeardownSequence />
         <ManufactorySection />
+        <SectionBeat direction="noir-to-crema" whisperKey="beat_whisper_archivo" cremaHex="#E9D8C0" />
         <TimelineEditorial />
         <RespaldoSection />
         <ContactForm />
