@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCopy, useLocale, type Locale } from "@/lib/i18n";
@@ -14,6 +14,8 @@ export function Nav() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const copy = useCopy();
   const { locale, setLocale } = useLocale();
+  const headerRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -48,6 +50,45 @@ export function Nav() {
     };
   }, [menuOpen]);
 
+  // Menú abierto = diálogo modal: Escape cierra (devolviendo el foco al
+  // botón) y Tab cicla dentro del header/overlay sin escapar al contenido
+  // de atrás (P1-2, WCAG 2.1.2).
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const focusables = Array.from(
+        headerRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled])'
+        ) ?? []
+      ).filter((el) => el.getClientRects().length > 0);
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      // Si el foco quedó fuera del header (p. ej. recién abierto), entrar al trap.
+      if (!active || !headerRef.current?.contains(active)) {
+        e.preventDefault();
+        first.focus();
+        return;
+      }
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   const isNoir = mode === "noir";
   // Con el menú abierto el header se funde al noir del overlay — una sola
   // superficie continua (sin clash crema/negro).
@@ -56,6 +97,7 @@ export function Nav() {
 
   return (
     <motion.header
+      ref={headerRef}
       initial={false}
       animate={{
         backgroundColor: menuOpen
@@ -77,7 +119,12 @@ export function Nav() {
             : "rgba(26,20,16,0)",
       }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      style={{ backdropFilter: scrolled ? "blur(18px)" : "blur(0px)" }}
+      // transition CSS: framer anima el resto de props pero backdropFilter
+      // vive en style y saltaba de golpe al cruzar scroll>24 (N6).
+      style={{
+        backdropFilter: scrolled ? "blur(18px)" : "blur(0px)",
+        transition: "backdrop-filter 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
       className="fixed inset-x-0 top-0 z-50 border-b"
     >
       <nav className="section-frame flex h-[72px] items-center justify-between">
@@ -119,6 +166,7 @@ export function Nav() {
 
           {/* Mobile hamburger */}
           <button
+            ref={toggleRef}
             type="button"
             aria-label={menuOpen ? copy.ui.nav_menu_close : copy.ui.nav_menu_open}
             aria-expanded={menuOpen}

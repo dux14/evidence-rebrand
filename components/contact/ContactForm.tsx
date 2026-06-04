@@ -69,6 +69,14 @@ export function ContactForm() {
             </motion.div>
           ) : (
             <form action={formAction} className="flex flex-col">
+              {/* Honeypot: invisible para humanos (aria-hidden + sin tab);
+                  los bots que rellenan todo lo delatan. Ver contact.ts. */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                <label>
+                  No llenar este campo
+                  <input type="text" name="sitio" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
               <Field
                 label={copy.ui.contact_fields.nombre}
                 name="nombre"

@@ -11,17 +11,22 @@ import { ContactForm } from "@/components/contact/ContactForm";
 
 export default function Page() {
   return (
-    <main>
+    <>
+      {/* Nav fuera de <main>: semántica correcta y el skip-link (#contenido)
+          aterriza después del nav en el orden de tabulación. Footer fuera por
+          la misma razón (landmark propio). */}
       <Nav />
-      <HeroNoir />
-      <SectionBeat direction="noir-to-crema" />
-      <LineasSection />
-      <TeardownSequence />
-      <ManufactorySection />
-      <TimelineEditorial />
-      <RespaldoSection />
-      <ContactForm />
+      <main id="contenido">
+        <HeroNoir />
+        <SectionBeat direction="noir-to-crema" />
+        <LineasSection />
+        <TeardownSequence />
+        <ManufactorySection />
+        <TimelineEditorial />
+        <RespaldoSection />
+        <ContactForm />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

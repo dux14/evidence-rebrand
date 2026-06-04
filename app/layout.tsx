@@ -66,6 +66,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-CO" className={`${interTight.variable} ${jetbrainsMono.variable}`}>
       <body>
+        {/* Primer focusable de la página: usuarios de teclado saltan el nav
+            completo (P1-4, WCAG 2.4.1). Visible solo con foco. */}
+        <a href="#contenido" className="skip-link font-mono-readout text-[12px]">
+          Saltar al contenido
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}
