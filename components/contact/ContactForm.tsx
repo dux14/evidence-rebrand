@@ -91,6 +91,14 @@ export function ContactForm() {
                 required
                 defaultValue={prev?.clinica}
               />
+              <Field
+                label={copy.ui.contact_fields.email}
+                name="email"
+                autoComplete="email"
+                type="email"
+                required
+                defaultValue={prev?.email}
+              />
               <div className="grid grid-cols-2 gap-6">
                 <Field
                   label={copy.ui.contact_fields.ciudad}

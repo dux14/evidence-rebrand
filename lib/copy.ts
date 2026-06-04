@@ -31,6 +31,8 @@ export type UiCopy = {
   hero_readout_lines: string[];
   hero_scroll_cue: string;
   beat_whisper: string;
+  beat_whisper_pro: string;
+  beat_whisper_archivo: string;
   teardown_eyebrow: string;
   teardown_scroll_label: string;
   teardown_beats: TeardownBeat[];
@@ -55,7 +57,7 @@ export type UiCopy = {
   contact_body: string;
   contact_cities_label: string;
   contact_cities: string;
-  contact_fields: { nombre: string; clinica: string; ciudad: string; telefono: string };
+  contact_fields: { nombre: string; clinica: string; email: string; ciudad: string; telefono: string };
   contact_submit: string;
   contact_sending: string;
   contact_success_eyebrow: string;

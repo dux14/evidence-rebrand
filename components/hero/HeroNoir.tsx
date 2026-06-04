@@ -156,7 +156,9 @@ function HeadlineWithBlur({ text }: { text: string }) {
   // Sin spans de espacio: un espacio entre inline-blocks no colapsa al inicio
   // de línea e indentaba la palabra tras el salto (auditoría 2026-06-04);
   // el margen derecho hace de espacio y desaparece en el quiebre de línea.
-  const tokens = text.split(/(\s+|10)/).filter((t) => !/^\s+$/.test(t));
+  // filter: fuera espacios Y strings vacíos (split con grupos adyacentes
+  // "␣10" produce "" entre medio — un span fantasma con margen).
+  const tokens = text.split(/(\s+|10)/).filter((t) => t && !/^\s+$/.test(t));
 
   return (
     <h1 className="hero-number text-white">

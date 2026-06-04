@@ -138,10 +138,11 @@ button:not(:disabled) {
   /* Piso 64px: a 375px de viewport la palabra más larga ("programas.")
      debe caber en ~327px de columna; el piso anterior de 96px la desbordaba
      (auditoría 2026-06-03). 14vw se mantiene para no alterar tablet/desktop.
-     Techo 148px (antes 160): con el CTA en la columna del titular, las 4
-     líneas + subhead + CTA deben entrar en 900px de viewport (fold 1440×900,
-     auditoría 2026-06-04). Solo afecta viewports ≥ ~1057px. */
-  font-size: clamp(64px, 14vw, 148px);
+     Techo 128px (antes 160→148): además del fold (CTA visible a 900/864),
+     N1 — "programas." a 148px cruzaba sobre la base del producto; a 128px
+     la palabra más larga termina antes de la columna del video. Solo afecta
+     viewports ≥ ~915px. */
+  font-size: clamp(64px, 14vw, 128px);
   line-height: 0.92;
   letter-spacing: -0.04em;
 }
