@@ -1,0 +1,146 @@
+{
+  "hero_headline": "Evidence Pro. 10 programas.",
+  "hero_subheadline": "Fabricado por las manos que después responden el teléfono.",
+  "seccion_lineas_headline": "Cuatro líneas. Doce instrumentos.",
+  "lineas_descriptors": [
+    {
+      "nombre": "Línea Corporal",
+      "descriptor": "Contorno, drenaje, reafirmación. Plataformas de alta intensidad.",
+      "tecnologias": ["Cavitación multipolar", "Radiofrecuencia tripolar", "Vacumterapia"]
+    },
+    {
+      "nombre": "Línea Facial",
+      "descriptor": "Rejuvenecimiento sin pinchazo. Resultado visible en cabina.",
+      "tecnologias": ["Microcorrientes", "HIFU facial", "Mesoterapia virtual"]
+    },
+    {
+      "nombre": "Línea Láser",
+      "descriptor": "Pigmento, vascular, depilación. Multi-longitud de onda.",
+      "tecnologias": ["Diodo 808 nm", "Nd:YAG 1064 nm", "IPL multibanda"]
+    },
+    {
+      "nombre": "Línea Soporte",
+      "descriptor": "Higienización, oxigenación, mantenimiento de cabina.",
+      "tecnologias": ["Hidrolimpieza", "Oxigeno-presoterapia", "Esterilización UV-C"]
+    }
+  ],
+  "evidence_pro_detail_intro": "Diez programas en una sola plataforma. Cuatro modos de entrega. Pantalla calibrada en planta antes de salir. Esto no es un equipo armado para catálogo. Es el que probamos seis meses antes de venderlo.",
+  "evidence_pro_specs": [
+    { "label": "FREQ", "value": "0.5 – 5 MHz" },
+    { "label": "POWER", "value": "60 W max" },
+    { "label": "MODES", "value": "4" },
+    { "label": "PROGRAMS", "value": "10" }
+  ],
+  "manufactory_headline": "Aquí se fabrica.",
+  "manufactory_subhead": "Cada Evidence Pro sale de la misma planta donde se ensamblará el siguiente.",
+  "manufactory_quote": "Las manos que ensamblan son las que después atienden la garantía.",
+  "timeline_milestones": [
+    { "anio": "1998", "objeto": "Primer equipo de cavitación", "frase": "Cuatro técnicos. Un taller en Bogotá." },
+    { "anio": "2005", "objeto": "Línea Corporal completa", "frase": "Veintidós clínicas en cinco ciudades." },
+    { "anio": "2012", "objeto": "Certificación INVIMA total", "frase": "Cada equipo registrado y trazable." },
+    { "anio": "2018", "objeto": "Red técnica nacional", "frase": "Bogotá, Medellín, Cali, Barranquilla." },
+    { "anio": "2024", "objeto": "Evidence Pro lanzamiento", "frase": "Tres años de desarrollo interno." }
+  ],
+  "respaldo_headline": "Después de la venta.",
+  "respaldo_concrete_promises": [
+    {
+      "index": "01",
+      "claim": "Técnicos propios en Bogotá, Medellín, Cali.",
+      "metrics": [
+        { "label": "TÉCNICOS", "value": "14" },
+        { "label": "CIUDADES", "value": "3" }
+      ]
+    },
+    {
+      "index": "02",
+      "claim": "Repuestos en bodega local. Cero importación.",
+      "metrics": [
+        { "label": "SKUS", "value": "220+" },
+        { "label": "STOCK", "value": "72 h" }
+      ]
+    },
+    {
+      "index": "03",
+      "claim": "Respuesta técnica en menos de 48 horas.",
+      "metrics": [
+        { "label": "SLA", "value": "48 h" },
+        { "label": "ESCALADO", "value": "DIRECTO" }
+      ]
+    },
+    {
+      "index": "04",
+      "claim": "Garantía de 36 meses, sin asterisco.",
+      "metrics": [
+        { "label": "COBERTURA", "value": "36 m" },
+        { "label": "ASTERISCOS", "value": "0" }
+      ]
+    }
+  ],
+  "cta_primary": "Agende demostración",
+  "cta_secondary": "Hable con técnico",
+  "footer_line": "Evidence. Equipos hechos por las mismas manos que los reparan.",
+  "ui": {
+    "nav_links": [
+      { "href": "#lineas", "label": "líneas" },
+      { "href": "#pro", "label": "pro" },
+      { "href": "#taller", "label": "taller" },
+      { "href": "#archivo", "label": "archivo" },
+      { "href": "#respaldo", "label": "respaldo" }
+    ],
+    "nav_menu_open": "Abrir menú",
+    "nav_menu_close": "Cerrar menú",
+    "hero_meta_location": "ESTUDIO ESTÉTICO · BOGOTÁ",
+    "hero_meta_film": "FILM 01 / 06",
+    "hero_readout_lines": ["EV / PRO · S/N 0000-0001", "10 PROGRAMAS · 4 MODOS · 0.5–5 MHz", "CALIBRADO EN PLANTA · BOGOTÁ"],
+    "hero_scroll_cue": "↓ desplazar",
+    "beat_whisper": "Cuatro disciplinas. Un fabricante.",
+    "teardown_eyebrow": "PRO · IN DEPTH",
+    "teardown_scroll_label": "SCROLL",
+    "teardown_beats": [
+      { "eyebrow": "ESTADO 01 / 04 · EXTERIOR", "title": "Diez programas en una sola plataforma.", "body": "Cuatro modos de entrega. Pantalla calibrada en planta antes de salir." },
+      { "eyebrow": "ESTADO 02 / 04 · INTERIOR", "title": "Lo que no se vende: la calibración.", "body": "Cada Pro pasa por seis meses de pruebas internas antes de entrar al inventario." },
+      { "eyebrow": "ESTADO 03 / 04 · TRANSDUCTOR", "title": "Manípulo de uso clínico.", "body": "Refrigeración líquida. Acople cerámico. Reemplazo modular en planta." },
+      { "eyebrow": "ESTADO 04 / 04 · MEMORIA", "title": "10 programas, recordados.", "body": "Esto es Evidence Pro. El equipo que diseñamos para usarlo todos los días." }
+    ],
+    "lineas_eyebrow": "LÍNEAS",
+    "lineas_tech_label": "— TECNOLOGÍAS",
+    "lineas_quote": "El catálogo no se compra. Se elige por uso.",
+    "lineas_cta_prefix": "Conocer",
+    "respaldo_subhead": "Cuatro promesas, medibles. Nada abstracto.",
+    "manufactory_eyebrow_label": "TALLER",
+    "manufactory_eyebrow": "BOGOTÁ · 1995",
+    "manufactory_captions": ["01 · SOLDADURA SMD · LÍNEA A", "02 · CALIBRACIÓN · BANCO 03", "03 · EMBALAJE · DESPACHO MED"],
+    "timeline_eyebrow": "ARCHIVO",
+    "timeline_counter": "05 / 05",
+    "timeline_headline": "Veintiséis años, en cinco objetos.",
+    "timeline_quote": "En 2012 dejamos de pedir trazabilidad al proveedor. Empezamos a producirla.",
+    "timeline_hito_label": "HITO",
+    "timeline_year_aria": "Año",
+    "timeline_alts": {
+      "1998": "Primer equipo Evidence, taller en Bogotá",
+      "2005": "Línea corporal Evidence",
+      "2012": "Certificación de equipo médico",
+      "2018": "Red técnica nacional Evidence",
+      "2024": "Evidence Pro, lanzamiento"
+    },
+    "respaldo_eyebrow_label": "RESPALDO",
+    "respaldo_eyebrow": "04 PROMESAS",
+    "contact_headline": "Agende una demostración en su clínica.",
+    "contact_body": "Un técnico Evidence visita su cabina con un Pro configurado para sus protocolos.",
+    "contact_cities_label": "— CIUDADES CON COBERTURA",
+    "contact_cities": "Bogotá · Medellín · Cali · Barranquilla",
+    "contact_fields": { "nombre": "Nombre", "clinica": "Clínica", "ciudad": "Ciudad", "telefono": "Teléfono" },
+    "contact_submit": "Agendar visita",
+    "contact_sending": "Enviando…",
+    "contact_success_eyebrow": "SOLICITUD RECIBIDA",
+    "contact_success_msg": "Un técnico de Evidence se comunicará con usted en menos de 48 horas hábiles.",
+    "meta_title": "evidence — equipos para medicina estética",
+    "meta_description": "Equipos para medicina estética fabricados en Bogotá desde 1995. Cuatro líneas, fabricación propia, servicio técnico directo. ISO 9001 · ISO 13485 · INVIMA.",
+    "contact_error_invalid": "Revise el teléfono: use solo números, con indicativo si aplica.",
+    "contact_error_msg": "No pudimos enviar su solicitud. Intente de nuevo o llámenos.",
+    "contact_phone": "+57 310 3247091",
+    "footer_sedes_label": "Sedes",
+    "footer_cities": ["Bogotá", "Medellín", "Cali"],
+    "footer_copyright": "© Evidence S.A.S · NIT 800.XXX.XXX-X"
+  }
+}

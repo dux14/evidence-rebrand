@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 
 export function Footer() {
+  const copy = useCopy();
   return (
     <footer
       data-mode="crema"
@@ -17,33 +20,23 @@ export function Footer() {
             height={40}
             className="h-[34px] w-auto md:h-[42px]"
           />
-          <p className="mt-6 max-w-[28ch] text-[14px] leading-relaxed">
+          <p className="mt-6 max-w-[28ch] text-[14px] leading-relaxed md:text-[17px]">
             {copy.footer_line}
           </p>
         </div>
 
         <div className="md:col-span-3 md:col-start-9">
-          <p className="font-mono-readout text-[11px] opacity-60">Sedes</p>
-          <ul className="mt-4 space-y-1.5 text-[14px]">
-            <li>Bogotá</li>
-            <li>Medellín</li>
-            <li>Cali</li>
+          <p className="font-mono-readout text-[11px] opacity-60 md:text-[13px]">{copy.ui.footer_sedes_label}</p>
+          <ul className="mt-4 space-y-1.5 text-[14px] md:text-[17px]">
+            {copy.ui.footer_cities.map((c) => (
+              <li key={c}>{c}</li>
+            ))}
           </ul>
         </div>
       </div>
 
-      <div className="mt-16 flex flex-col gap-3 border-t border-[rgba(26,20,16,0.08)] pt-6 text-[11px] md:flex-row md:items-center md:justify-between">
-        <span className="font-mono-readout opacity-60">
-          © Evidence S.A.S · NIT 800.XXX.XXX-X
-        </span>
-        <div className="flex gap-6 font-mono-readout opacity-60">
-          <a href="#legal" className="hover:opacity-100">
-            Aviso legal
-          </a>
-          <a href="#privacidad" className="hover:opacity-100">
-            Privacidad
-          </a>
-        </div>
+      <div className="mt-16 flex flex-col gap-3 border-t border-[rgba(26,20,16,0.08)] pt-6 text-[11px] md:flex-row md:items-center md:justify-between md:text-[12px]">
+        <span className="font-mono-readout opacity-60">{copy.ui.footer_copyright}</span>
       </div>
     </footer>
   );

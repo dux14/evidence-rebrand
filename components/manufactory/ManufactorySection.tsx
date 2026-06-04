@@ -2,29 +2,34 @@
 
 import { motion } from "framer-motion";
 import { CINEMATIC_EASE } from "@/lib/motion";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 import { SerifQuote } from "@/components/ui/SerifQuote";
 import { ManufactoryPlaceholder } from "./ManufactoryPlaceholder";
 
 export function ManufactorySection() {
+  const copy = useCopy();
   return (
+    // Noir: las macro-fotos del taller son oscuras — fundirlas al crema es
+    // imposible por CSS (auditoría 2026-06-03, RMSE ~82%). Alternativa
+    // documentada: regenerarlas con fondo crema vía Higgsfield.
     <section
       id="taller"
-      data-mode="crema"
+      data-mode="noir"
       className="relative isolate overflow-hidden py-20 md:py-28"
-      style={{ background: "var(--crema-canvas)", color: "var(--crema-fg)" }}
+      style={{ background: "var(--noir-bg-2)", color: "var(--noir-fg)" }}
     >
-      <div className="crema-grain pointer-events-none absolute inset-0" />
 
       <div className="section-frame relative">
         {/* eyebrow row */}
         <div className="flex items-center justify-between">
-          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">TALLER</span>
           <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
-            BOGOTÁ · 1998
+            {copy.ui.manufactory_eyebrow_label}
+          </span>
+          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
+            {copy.ui.manufactory_eyebrow}
           </span>
         </div>
-        <div className="mt-3 h-px bg-[rgba(26,20,16,0.12)]" />
+        <div className="mt-3 h-px bg-white/15" />
 
         {/* Headline */}
         <motion.h2
@@ -42,7 +47,7 @@ export function ManufactorySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-15%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.2 }}
-          className="mt-8 max-w-[42ch] text-[18px] leading-[1.5] text-[color:var(--crema-fg)]/80 md:text-[22px]"
+          className="mt-8 max-w-[42ch] text-[18px] leading-[1.5] text-white/80 md:text-[22px]"
         >
           {copy.manufactory_subhead}
         </motion.p>
@@ -50,13 +55,21 @@ export function ManufactorySection() {
 
       {/* Wide editorial photo */}
       <div className="section-frame relative mt-20 md:mt-28">
-        <motion.div
-          initial={{ clipPath: "inset(0 50% 0 50%)" }}
-          whileInView={{ clipPath: "inset(0 0% 0 0%)" }}
-          viewport={{ once: true, margin: "-15%" }}
-          transition={{ duration: 1.4, ease: CINEMATIC_EASE }}
-        >
-          <ManufactoryPlaceholder variant="wide" />
+        {/* El clip-path va en variants de un hijo: si el propio elemento
+            observado arranca clipeado a área 0, el IntersectionObserver nunca
+            lo reporta visible y el reveal queda en deadlock (Chrome). */}
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-15%" }}>
+          <motion.div
+            variants={{
+              hidden: { clipPath: "inset(0 50% 0 50%)" },
+              show: {
+                clipPath: "inset(0 0% 0 0%)",
+                transition: { duration: 1.4, ease: CINEMATIC_EASE },
+              },
+            }}
+          >
+            <ManufactoryPlaceholder variant="wide" />
+          </motion.div>
         </motion.div>
       </div>
 
@@ -68,7 +81,7 @@ export function ManufactorySection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE }}
         >
-          <ManufactoryPlaceholder variant="macro-solder" caption="01 · SOLDADURA SMD · LÍNEA A" />
+          <ManufactoryPlaceholder variant="macro-solder" caption={copy.ui.manufactory_captions[0]} />
         </motion.div>
 
         <motion.div
@@ -77,7 +90,7 @@ export function ManufactorySection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.12 }}
         >
-          <ManufactoryPlaceholder variant="macro-calibration" caption="02 · CALIBRACIÓN · BANCO 03" />
+          <ManufactoryPlaceholder variant="macro-calibration" caption={copy.ui.manufactory_captions[1]} />
         </motion.div>
 
         <motion.div
@@ -86,13 +99,13 @@ export function ManufactorySection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.24 }}
         >
-          <ManufactoryPlaceholder variant="macro-pack" caption="03 · EMBALAJE · DESPACHO MED" />
+          <ManufactoryPlaceholder variant="macro-pack" caption={copy.ui.manufactory_captions[2]} />
         </motion.div>
       </div>
 
       {/* serif italic closer */}
       <div className="section-frame relative mt-28 md:mt-40">
-        <SerifQuote align="center" size="lg" tone="crema">
+        <SerifQuote align="center" size="lg" tone="noir">
           {copy.manufactory_quote}
         </SerifQuote>
       </div>

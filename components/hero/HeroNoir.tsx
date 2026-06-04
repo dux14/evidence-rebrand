@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
 import { CINEMATIC_EASE } from "@/lib/motion";
 import { FEATURES } from "@/lib/config";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 import { EvidenceProArtifact } from "./EvidenceProArtifact";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
@@ -15,6 +15,7 @@ const EvidenceProModel = dynamic(() => import("./EvidenceProModel"), {
 
 export function HeroNoir() {
   const reduce = useReducedMotion();
+  const copy = useCopy();
 
   return (
     <section
@@ -41,10 +42,10 @@ export function HeroNoir() {
       {/* meta row top — sits below nav */}
       <div className="section-frame mt-[88px] flex items-center justify-between text-white/55 md:mt-[104px]">
         <span className="font-mono-readout text-[11px] md:text-[12px]">
-          ESTUDIO ESTÉTICO · BOGOTÁ
+          {copy.ui.hero_meta_location}
         </span>
         <span className="font-mono-readout text-[11px] md:text-[12px]">
-          FILM 01 / 06
+          {copy.ui.hero_meta_film}
         </span>
       </div>
 
@@ -71,16 +72,17 @@ export function HeroNoir() {
             reduce ? (
               <img
                 src="/video/evidence-pro-poster.jpg"
-                alt="Evidence Pro"
-                className="h-full w-full object-contain"
+                alt="Evidence Pro — electroestimulador multicanal"
+                className="h-full w-full object-contain mix-blend-screen"
               />
             ) : (
               <video
-                className="h-full w-full object-contain"
+                className="h-full w-full object-contain mix-blend-screen"
                 autoPlay
                 muted
                 loop
                 playsInline
+                aria-label="Evidence Pro girando"
                 poster="/video/evidence-pro-poster.jpg"
               >
                 <source src="/video/evidence-pro-turntable.mp4" type="video/mp4" />
@@ -101,9 +103,11 @@ export function HeroNoir() {
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 1.8 }}
           className="font-mono-readout flex flex-col gap-1.5 text-[11px] text-white/60 md:text-[12px]"
         >
-          <span>EV / PRO · S/N 0000-0001</span>
-          <span>10 PROGRAMAS · 4 MODOS · 0.5–5 MHz</span>
-          <span className="text-white/35">CALIBRADO EN PLANTA · BOGOTÁ</span>
+          {copy.ui.hero_readout_lines.map((line, i) => (
+            <span key={i} className={i === 2 ? "text-white/35" : undefined}>
+              {line}
+            </span>
+          ))}
         </motion.div>
 
         <motion.div
@@ -132,7 +136,7 @@ export function HeroNoir() {
             className="flex flex-col items-center gap-1.5"
           >
             <span className="font-mono-readout text-[10px] text-white/55">
-              ↓ desplazar
+              {copy.ui.hero_scroll_cue}
             </span>
             <span className="block h-7 w-px bg-white/30" />
           </motion.div>
@@ -143,8 +147,9 @@ export function HeroNoir() {
 }
 
 function HeadlineWithBlur({ text }: { text: string }) {
-  // Tokenize so "10" can get the dramatic blur-in.
-  const tokens = text.split(/(\s+|\.|10)/).filter(Boolean);
+  // Tokenize so "10" can get the dramatic blur-in. La puntuación queda pegada
+  // a su palabra ("Pro.", "programas.") para que el punto no salte de línea solo.
+  const tokens = text.split(/(\s+|10)/).filter(Boolean);
 
   return (
     <h1 className="hero-number text-white">

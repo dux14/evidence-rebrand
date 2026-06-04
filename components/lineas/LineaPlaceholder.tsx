@@ -29,16 +29,13 @@ export function LineaPlaceholder({ variant }: { variant: Variant }) {
   if (FEATURES.lineas_images) {
     const img = IMAGES[variant];
     return (
-      <div
-        className="relative aspect-[4/5] w-full overflow-hidden"
-        style={{ background: "var(--crema-surface)" }}
-      >
+      <div className="relative aspect-[4/5] w-full overflow-hidden">
         <Image
           src={img.src}
           alt={img.alt}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover"
+          className="asset-blend object-cover"
         />
       </div>
     );

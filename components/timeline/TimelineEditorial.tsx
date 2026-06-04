@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import { CINEMATIC_EASE } from "@/lib/motion";
-import { copy, type TimelineMilestone } from "@/lib/copy";
+import { type TimelineMilestone } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 import { SerifQuote } from "@/components/ui/SerifQuote";
 import { MilestoneVisual } from "./MilestoneVisual";
 
 export function TimelineEditorial() {
+  const copy = useCopy();
   return (
     <section
       id="archivo"
@@ -18,9 +20,11 @@ export function TimelineEditorial() {
 
       <div className="section-frame relative">
         <div className="flex items-center justify-between">
-          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">ARCHIVO</span>
           <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
-            05 / 05
+            {copy.ui.timeline_eyebrow}
+          </span>
+          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
+            {copy.ui.timeline_counter}
           </span>
         </div>
         <div className="mt-3 h-px bg-[rgba(26,20,16,0.12)]" />
@@ -32,7 +36,7 @@ export function TimelineEditorial() {
           transition={{ duration: 0.9, ease: CINEMATIC_EASE }}
           className="mt-12 max-w-[18ch] font-display text-[44px] font-light leading-[0.96] md:text-[72px]"
         >
-          Veintiséis años, en cinco objetos.
+          {copy.ui.timeline_headline}
         </motion.h2>
       </div>
 
@@ -45,7 +49,7 @@ export function TimelineEditorial() {
       {/* mid-timeline italic break, slipped between blocks 3 and 4 via order */}
       <div className="section-frame relative mt-28 md:mt-36">
         <SerifQuote align="center" size="lg" tone="crema">
-          En 2012 dejamos de pedir trazabilidad al proveedor. Empezamos a producirla.
+          {copy.ui.timeline_quote}
         </SerifQuote>
       </div>
     </section>
@@ -61,6 +65,7 @@ function MilestoneRow({
   invert: boolean;
   index: number;
 }) {
+  const copy = useCopy();
   return (
     <motion.article
       initial="hidden"
@@ -89,7 +94,7 @@ function MilestoneRow({
             show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: CINEMATIC_EASE } },
           }}
           className="font-display text-[88px] font-extralight leading-[0.9] md:text-[128px]"
-          aria-label={`Año ${m.anio}`}
+          aria-label={`${copy.ui.timeline_year_aria} ${m.anio}`}
         >
           {m.anio}
         </motion.div>
@@ -110,7 +115,7 @@ function MilestoneRow({
         </motion.div>
 
         <span className="font-mono-readout mt-6 inline-block text-[10px] opacity-40">
-          HITO {String(index + 1).padStart(2, "0")} / 05
+          {copy.ui.timeline_hito_label} {String(index + 1).padStart(2, "0")} / 05
         </span>
       </div>
     </motion.article>

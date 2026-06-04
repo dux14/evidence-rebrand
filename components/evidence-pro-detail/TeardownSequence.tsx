@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, useReducedMotion, useMotionValueEvent 
 import { useRef } from "react";
 import { CINEMATIC_EASE } from "@/lib/motion";
 import { FEATURES } from "@/lib/config";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 import { SpecsMono } from "./SpecsMono";
 import { EvidenceProArtifact } from "@/components/hero/EvidenceProArtifact";
 
@@ -20,30 +20,10 @@ export function TeardownSequence() {
     offset: ["start start", "end end"],
   });
   const reduce = useReducedMotion();
+  const copy = useCopy();
 
   // Four crossfade copy beats — each window of 0.25
-  const beats: { eyebrow: string; title: string; body: string }[] = [
-    {
-      eyebrow: "ESTADO 01 / 04 · EXTERIOR",
-      title: "Diez programas en una sola plataforma.",
-      body: "Cuatro modos de entrega. Pantalla calibrada en planta antes de salir.",
-    },
-    {
-      eyebrow: "ESTADO 02 / 04 · INTERIOR",
-      title: "Lo que no se vende: la calibración.",
-      body: "Cada Pro pasa por seis meses de pruebas internas antes de entrar al inventario.",
-    },
-    {
-      eyebrow: "ESTADO 03 / 04 · TRANSDUCTOR",
-      title: "Manípulo de uso clínico.",
-      body: "Refrigeración líquida. Acople cerámico. Reemplazo modular en planta.",
-    },
-    {
-      eyebrow: "ESTADO 04 / 04 · MEMORIA",
-      title: "10 programas, recordados.",
-      body: "Esto es Evidence Pro. El equipo que diseñamos para usarlo todos los días.",
-    },
-  ];
+  const beats = copy.ui.teardown_beats;
 
   const beatRange = (i: number) => {
     const w = 1 / beats.length;
@@ -72,17 +52,27 @@ export function TeardownSequence() {
           }}
         />
 
-        <div className="section-frame relative grid w-full grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-6">
-          {/* meta-eyebrow row */}
-          <div className="absolute inset-x-0 top-8 flex items-center justify-between px-[inherit]">
+        {/* meta-eyebrow row — anclada al viewport pineado, no al grid centrado,
+            para que el indicador SCROLL no pise el titular del primer beat.
+            top-20 la deja debajo del header fijo (72px). */}
+        <div className="absolute inset-x-0 top-20">
+          <div className="section-frame flex items-center justify-between">
             <span className="font-mono-readout text-[11px] text-white/55 md:text-[12px]">
-              PRO · IN DEPTH
+              {copy.ui.teardown_eyebrow}
             </span>
-            <ProgressIndicator progress={scrollYProgress} count={beats.length} />
+            <ProgressIndicator
+              progress={scrollYProgress}
+              count={beats.length}
+              label={copy.ui.teardown_scroll_label}
+            />
           </div>
+        </div>
 
+        {/* En mobile el grid no se centra: pt despeja la fila meta y el video
+            se acorta para que beats + specs entren en la pantalla. */}
+        <div className="section-frame relative grid w-full grid-cols-1 gap-6 pt-32 md:grid-cols-12 md:items-center md:gap-6 md:pt-0">
           {/* product anchor centered */}
-          <div className="relative mx-auto h-[60vh] w-full max-w-[520px] md:col-span-6 md:col-start-2">
+          <div className="relative mx-auto h-[34vh] w-full max-w-[520px] md:col-span-6 md:col-start-1 md:h-[72vh] md:max-w-[680px]">
             {FEATURES.teardown_video ? (
               <TeardownScrubVideo progress={scrollYProgress} />
             ) : (
@@ -91,12 +81,16 @@ export function TeardownSequence() {
           </div>
 
           {/* crossfade copy */}
-          <div className="relative md:col-span-5 md:col-start-8">
-            {beats.map((b, i) => (
-              <CrossfadeBeat key={i} beat={b} range={beatRange(i)} progress={scrollYProgress} />
-            ))}
+          <div className="md:col-span-5 md:col-start-8">
+            {/* Los beats son absolute (crossfade); este wrapper reserva su altura
+                en el flujo para que SpecsMono no se solape con el título. */}
+            <div className="relative min-h-[220px] md:min-h-[440px]">
+              {beats.map((b, i) => (
+                <CrossfadeBeat key={i} beat={b} range={beatRange(i)} progress={scrollYProgress} />
+              ))}
+            </div>
 
-            <div className="relative mt-12">
+            <div className="relative mt-6 md:mt-12">
               <SpecsMono specs={copy.evidence_pro_specs} />
             </div>
           </div>
@@ -133,9 +127,10 @@ function TeardownScrubVideo({ progress }: { progress: ReturnType<typeof useScrol
         ref={vref}
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
+        aria-label="Despiece del Evidence Pro"
         poster="/video/evidence-pro-poster.jpg"
-        className="h-full w-full object-contain"
+        className="h-full w-full object-contain mix-blend-screen"
       >
         <source src="/video/evidence-pro-teardown.mp4" type="video/mp4" />
       </video>
@@ -211,11 +206,11 @@ function CrossfadeBeat({
   const y = useTransform(progress, [...range], [16, 0, 0, -12]);
   return (
     <motion.div style={{ opacity, y }} className="absolute inset-x-0 top-0">
-      <div className="font-mono-readout text-[11px] text-white/55 md:text-[12px]">{beat.eyebrow}</div>
-      <h3 className="mt-6 max-w-[14ch] font-display text-[32px] font-light leading-[1.05] md:text-[56px]">
+      <div className="font-mono-readout text-[11px] text-white/55 md:text-[13px]">{beat.eyebrow}</div>
+      <h3 className="mt-4 max-w-[14ch] font-display text-[30px] font-light leading-[1.05] md:mt-6 md:text-[64px]">
         {beat.title}
       </h3>
-      <p className="mt-5 max-w-[34ch] text-[16px] leading-[1.55] text-white/65 md:text-[18px]">
+      <p className="mt-4 max-w-[34ch] text-[15px] leading-[1.55] text-white/65 md:mt-5 md:max-w-[36ch] md:text-[20px]">
         {beat.body}
       </p>
     </motion.div>
@@ -225,9 +220,11 @@ function CrossfadeBeat({
 function ProgressIndicator({
   progress,
   count,
+  label,
 }: {
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   count: number;
+  label: string;
 }) {
   // Hooks must run at the top level; we always create 4 segments and ignore extras.
   const seg1 = useTransform(progress, [0, 0.001, 0.25], [0.18, 1, 0.18]);
@@ -239,7 +236,7 @@ function ProgressIndicator({
   return (
     <div className="flex items-center gap-3">
       <span className="font-mono-readout text-[11px] text-white/55 md:text-[12px]">
-        SCROLL
+        {label}
       </span>
       <div className="flex gap-1.5">
         {segs.map((opacity, i) => (

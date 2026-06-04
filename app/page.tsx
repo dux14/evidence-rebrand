@@ -14,7 +14,7 @@ export default function Page() {
     <main>
       <Nav />
       <HeroNoir />
-      <SectionBeat direction="noir-to-crema" whisper="Cuatro disciplinas. Un fabricante." />
+      <SectionBeat direction="noir-to-crema" />
       <LineasSection />
       <TeardownSequence />
       <ManufactorySection />

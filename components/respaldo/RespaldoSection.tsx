@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import { CINEMATIC_EASE } from "@/lib/motion";
-import { copy, type RespaldoPromise } from "@/lib/copy";
+import { type RespaldoPromise } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n";
 
 export function RespaldoSection() {
+  const copy = useCopy();
   return (
     <section
       id="respaldo"
@@ -16,9 +18,11 @@ export function RespaldoSection() {
 
       <div className="section-frame relative">
         <div className="flex items-center justify-between">
-          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">RESPALDO</span>
           <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
-            04 PROMESAS
+            {copy.ui.respaldo_eyebrow_label}
+          </span>
+          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
+            {copy.ui.respaldo_eyebrow}
           </span>
         </div>
         <div className="mt-3 h-px bg-[rgba(26,20,16,0.12)]" />
@@ -40,7 +44,7 @@ export function RespaldoSection() {
           transition={{ duration: 0.7, ease: CINEMATIC_EASE, delay: 0.2 }}
           className="mt-6 max-w-[42ch] text-[18px] leading-[1.5] text-[color:var(--crema-fg)]/70 md:text-[20px]"
         >
-          Cuatro promesas, medibles. Nada abstracto.
+          {copy.ui.respaldo_subhead}
         </motion.p>
       </div>
 

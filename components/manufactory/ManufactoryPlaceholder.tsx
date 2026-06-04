@@ -37,11 +37,14 @@ export function ManufactoryPlaceholder({
             alt={img.alt}
             fill
             sizes={variant === "wide" ? "100vw" : "(max-width: 768px) 100vw, 33vw"}
+            // La wide arranca clipeada a área 0 por el reveal: lazy nunca la
+            // pediría a tiempo y el clip se abriría sobre un hueco vacío.
+            loading={variant === "wide" ? "eager" : undefined}
             className="object-cover"
           />
         </div>
         {caption ? (
-          <figcaption className="font-mono-readout mt-3 text-[10px] text-[color:var(--crema-fg)]/55 md:text-[11px]">
+          <figcaption className="font-mono-readout mt-3 text-[10px] opacity-55 md:text-[11px]">
             {caption}
           </figcaption>
         ) : null}
