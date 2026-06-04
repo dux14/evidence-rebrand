@@ -15,7 +15,7 @@ type Props = Omit<HTMLMotionProps<"button">, "ref" | "children"> & {
  * with a soft spring. Respects prefers-reduced-motion.
  */
 export function MagneticButton({ tone = "noir", children, href, ...rest }: Props) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const reduce = useReducedMotion();
@@ -23,7 +23,7 @@ export function MagneticButton({ tone = "noir", children, href, ...rest }: Props
   const sx = useSpring(x, { stiffness: 200, damping: 25, mass: 0.6 });
   const sy = useSpring(y, { stiffness: 200, damping: 25, mass: 0.6 });
 
-  const onMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onMove = (e: React.MouseEvent<HTMLElement>) => {
     if (reduce) return;
     const r = ref.current?.getBoundingClientRect();
     if (!r) return;
@@ -43,15 +43,9 @@ export function MagneticButton({ tone = "noir", children, href, ...rest }: Props
       ? "bg-white text-[color:var(--noir-bg)] hover:bg-white/90"
       : "bg-[color:var(--crema-fg)] text-[color:var(--crema-canvas)] hover:bg-[color:var(--crema-fg)]/90";
 
-  const Inner = (
-    <motion.button
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ x: sx, y: sy }}
-      className={`group inline-flex h-[52px] items-center gap-3 px-7 text-[14px] font-medium tracking-tight transition-colors ${styles}`}
-      {...rest}
-    >
+  const className = `group inline-flex h-[52px] items-center gap-3 px-7 text-[14px] font-medium tracking-tight transition-colors ${styles}`;
+  const content = (
+    <>
       <span>{children}</span>
       <motion.span
         aria-hidden
@@ -61,15 +55,35 @@ export function MagneticButton({ tone = "noir", children, href, ...rest }: Props
       >
         →
       </motion.span>
-    </motion.button>
+    </>
   );
 
+  // Con href se renderiza un <a> real (no <button> anidado en <a>: HTML
+  // inválido y doble tab-stop para teclado/lectores).
   if (href) {
     return (
-      <a href={href} className="inline-block">
-        {Inner}
-      </a>
+      <motion.a
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        href={href}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        style={{ x: sx, y: sy }}
+        className={className}
+      >
+        {content}
+      </motion.a>
     );
   }
-  return Inner;
+  return (
+    <motion.button
+      ref={ref as React.Ref<HTMLButtonElement>}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ x: sx, y: sy }}
+      className={className}
+      {...rest}
+    >
+      {content}
+    </motion.button>
+  );
 }

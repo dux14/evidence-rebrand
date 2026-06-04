@@ -18,7 +18,7 @@ export function ContactForm() {
       id="contacto"
       data-mode="crema"
       className="relative isolate overflow-hidden py-28 md:py-40"
-      style={{ background: "var(--crema-canvas)", color: "var(--crema-fg)" }}
+      style={{ background: "var(--crema-ivory)", color: "var(--crema-fg)" }}
     >
       <div className="crema-grain pointer-events-none absolute inset-0" />
 
@@ -45,7 +45,7 @@ export function ContactForm() {
           </motion.p>
 
           <ul className="mt-10 space-y-2 text-[14px] md:text-[17px]">
-            <li className="font-mono-readout text-[10px] opacity-50 md:text-[12px]">
+            <li className="font-mono-readout text-[10px] opacity-70 md:text-[12px]">
               {copy.ui.contact_cities_label}
             </li>
             <li>{copy.ui.contact_cities}</li>
@@ -118,7 +118,7 @@ export function ContactForm() {
                 </p>
               ) : null}
 
-              <p className="font-mono-readout mt-6 text-[10px] text-[color:var(--crema-fg)]/45 md:text-[12px]">
+              <p className="font-mono-readout mt-6 text-[10px] text-[color:var(--crema-fg)]/70 md:text-[12px]">
                 {copy.cta_secondary.toUpperCase()} ·{" "}
                 <a
                   href={`tel:${copy.ui.contact_phone.replace(/\s/g, "")}`}
@@ -152,7 +152,7 @@ function Field({
 }) {
   return (
     <label className="group flex flex-col gap-2 border-b border-[color:var(--crema-fg)]/15 py-4 transition-colors focus-within:border-[color:var(--ev-blue-deep)]">
-      <span className="font-mono-readout text-[10px] text-[color:var(--crema-fg)]/55 transition-colors group-focus-within:text-[color:var(--ev-blue-deep)] md:text-[12px]">
+      <span className="font-mono-readout text-[10px] text-[color:var(--crema-fg)]/70 transition-colors group-focus-within:text-[color:var(--ev-blue-deep)] md:text-[12px]">
         {label}
         {required ? " *" : ""}
       </span>

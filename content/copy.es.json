@@ -85,7 +85,8 @@
       { "href": "#pro", "label": "pro" },
       { "href": "#taller", "label": "taller" },
       { "href": "#archivo", "label": "archivo" },
-      { "href": "#respaldo", "label": "respaldo" }
+      { "href": "#respaldo", "label": "respaldo" },
+      { "href": "#contacto", "label": "contacto" }
     ],
     "nav_menu_open": "Abrir menú",
     "nav_menu_close": "Cerrar menú",

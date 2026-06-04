@@ -7,6 +7,7 @@
 
 @theme {
   /* Crema palette — warm paper, matched to product-shot backdrops */
+  --color-crema-ivory: #F4EADA;
   --color-crema-canvas: #E9D8C0;
   --color-crema-surface: #E2CFB4;
   --color-crema-muted: #D9C4A6;
@@ -50,8 +51,10 @@
   --dur-beat: 1200ms;
 
   /* Computed (re-exposed for inline style use) */
+  --crema-ivory: var(--color-crema-ivory);
   --crema-canvas: var(--color-crema-canvas);
   --crema-surface: var(--color-crema-surface);
+  --crema-muted: var(--color-crema-muted);
   --crema-fg: var(--color-crema-fg);
   --noir-bg: var(--color-noir-bg);
   --noir-bg-2: var(--color-noir-bg-2);

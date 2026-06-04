@@ -19,8 +19,10 @@ export function SectionBeat({ direction }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
 
-  const fromColor = direction === "noir-to-crema" ? "#0A0A0B" : "#E9D8C0";
-  const toColor = direction === "noir-to-crema" ? "#E9D8C0" : "#0A0A0B";
+  // Hex literales (no var()): useTransform interpola strings de color concretos.
+  // #F4EADA refleja --crema-ivory (fondo de la banda lineas, P2 bookends).
+  const fromColor = direction === "noir-to-crema" ? "#0A0A0B" : "#F4EADA";
+  const toColor = direction === "noir-to-crema" ? "#F4EADA" : "#0A0A0B";
   const fromText = direction === "noir-to-crema" ? "#FFFFFF" : "#1A1410";
   const toText = direction === "noir-to-crema" ? "#1A1410" : "#FFFFFF";
 

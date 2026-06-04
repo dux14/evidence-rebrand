@@ -49,22 +49,27 @@ export function Nav() {
   }, [menuOpen]);
 
   const isNoir = mode === "noir";
+  // Con el menú abierto el header se funde al noir del overlay — una sola
+  // superficie continua (sin clash crema/negro).
+  const showNoir = isNoir || menuOpen;
   const links = copy.ui.nav_links;
 
   return (
     <motion.header
       initial={false}
       animate={{
-        backgroundColor: isNoir
-          ? scrolled
-            ? "rgba(0,0,0,0.72)"
-            : "rgba(0,0,0,0)"
-          : scrolled
-            ? "rgba(251,249,247,0.82)"
-            : "rgba(251,249,247,0)",
-        color: isNoir ? "#FFFFFF" : "#1A1410",
-        borderBottomColor: isNoir
-          ? scrolled
+        backgroundColor: menuOpen
+          ? "rgba(0,0,0,1)"
+          : isNoir
+            ? scrolled
+              ? "rgba(0,0,0,0.72)"
+              : "rgba(0,0,0,0)"
+            : scrolled
+              ? "rgba(244,234,218,0.85)" // tinte crema-ivory: se funde con las bandas claras
+              : "rgba(244,234,218,0)",
+        color: showNoir ? "#FFFFFF" : "#1A1410",
+        borderBottomColor: showNoir
+          ? scrolled || menuOpen
             ? "rgba(38,38,38,1)"
             : "rgba(38,38,38,0)"
           : scrolled
@@ -78,7 +83,7 @@ export function Nav() {
       <nav className="section-frame flex h-[72px] items-center justify-between">
         <a href="#top" aria-label="evidence — inicio" className="flex items-center">
           <Image
-            src={isNoir ? "/img/brand/evidence-wordmark-white.png" : "/img/brand/evidence-wordmark.png"}
+            src={showNoir ? "/img/brand/evidence-wordmark-white.png" : "/img/brand/evidence-wordmark.png"}
             alt="evidence"
             width={107}
             height={36}

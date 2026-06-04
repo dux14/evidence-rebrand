@@ -14,16 +14,16 @@ export function TimelineEditorial() {
       id="archivo"
       data-mode="crema"
       className="relative isolate overflow-hidden py-28 md:py-40"
-      style={{ background: "var(--crema-surface)", color: "var(--crema-fg)" }}
+      style={{ background: "var(--crema-canvas)", color: "var(--crema-fg)" }}
     >
       <div className="crema-grain pointer-events-none absolute inset-0" />
 
       <div className="section-frame relative">
         <div className="flex items-center justify-between">
-          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
+          <span className="font-mono-readout text-[11px] opacity-70 md:text-[12px]">
             {copy.ui.timeline_eyebrow}
           </span>
-          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
+          <span className="font-mono-readout text-[11px] opacity-70 md:text-[12px]">
             {copy.ui.timeline_counter}
           </span>
         </div>
@@ -114,7 +114,7 @@ function MilestoneRow({
           </p>
         </motion.div>
 
-        <span className="font-mono-readout mt-6 inline-block text-[10px] opacity-40">
+        <span className="font-mono-readout mt-6 inline-block text-[10px] opacity-70">
           {copy.ui.timeline_hito_label} {String(index + 1).padStart(2, "0")} / 05
         </span>
       </div>
