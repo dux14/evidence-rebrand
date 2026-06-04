@@ -75,10 +75,14 @@ export function TeardownSequence() {
           </div>
 
           {/* crossfade copy */}
-          <div className="relative md:col-span-5 md:col-start-8">
-            {beats.map((b, i) => (
-              <CrossfadeBeat key={i} beat={b} range={beatRange(i)} progress={scrollYProgress} />
-            ))}
+          <div className="md:col-span-5 md:col-start-8">
+            {/* Los beats son absolute (crossfade); este wrapper reserva su altura
+                en el flujo para que SpecsMono no se solape con el título. */}
+            <div className="relative min-h-[280px] md:min-h-[400px]">
+              {beats.map((b, i) => (
+                <CrossfadeBeat key={i} beat={b} range={beatRange(i)} progress={scrollYProgress} />
+              ))}
+            </div>
 
             <div className="relative mt-12">
               <SpecsMono specs={copy.evidence_pro_specs} />
@@ -120,7 +124,7 @@ function TeardownScrubVideo({ progress }: { progress: ReturnType<typeof useScrol
         preload="metadata"
         aria-label="Despiece del Evidence Pro"
         poster="/video/evidence-pro-poster.jpg"
-        className="h-full w-full object-contain"
+        className="h-full w-full object-contain mix-blend-screen"
       >
         <source src="/video/evidence-pro-teardown.mp4" type="video/mp4" />
       </video>

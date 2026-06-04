@@ -73,11 +73,11 @@ export function HeroNoir() {
               <img
                 src="/video/evidence-pro-poster.jpg"
                 alt="Evidence Pro — electroestimulador multicanal"
-                className="h-full w-full object-contain"
+                className="h-full w-full object-contain mix-blend-screen"
               />
             ) : (
               <video
-                className="h-full w-full object-contain"
+                className="h-full w-full object-contain mix-blend-screen"
                 autoPlay
                 muted
                 loop
