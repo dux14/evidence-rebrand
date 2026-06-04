@@ -24,10 +24,10 @@ export function LineasSection() {
       {/* eyebrow row */}
       <div className="section-frame relative">
         <div className="flex items-center justify-between">
-          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
+          <span className="font-mono-readout text-[11px] opacity-70 md:text-[12px]">
             {copy.ui.lineas_eyebrow}
           </span>
-          <span className="font-mono-readout text-[11px] opacity-60 md:text-[12px]">
+          <span className="font-mono-readout text-[11px] opacity-70 md:text-[12px]">
             {String(copy.lineas_descriptors.length).padStart(2, "0")} /{" "}
             {String(copy.lineas_descriptors.length).padStart(2, "0")}
           </span>
@@ -111,7 +111,7 @@ function LineaBlock({
             show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: CINEMATIC_EASE, delay: 0.15 } },
           }}
         >
-          <div className="font-mono-readout text-[11px] opacity-60 md:text-[13px]">
+          <div className="font-mono-readout text-[11px] opacity-70 md:text-[13px]">
             {String(index + 1).padStart(2, "0")} /{" "}
             {linea.nombre.replace(/Línea\s|\s?Line/g, "").trim().toUpperCase()}
           </div>
@@ -125,7 +125,7 @@ function LineaBlock({
           </p>
 
           <ul className="mt-10 space-y-2 text-[14px] md:space-y-3 md:text-[18px]">
-            <li className="font-mono-readout text-[10px] opacity-50 md:text-[12px]">{copy.ui.lineas_tech_label}</li>
+            <li className="font-mono-readout text-[10px] opacity-70 md:text-[12px]">{copy.ui.lineas_tech_label}</li>
             {linea.tecnologias.map((t) => (
               <li key={t} className="flex items-baseline gap-3">
                 <span className="font-mono-readout text-[10px] opacity-40 md:text-[12px]">·</span>
