@@ -190,7 +190,7 @@ function LocaleToggle({
             type="button"
             onClick={() => setLocale(l)}
             aria-pressed={locale === l}
-            className={`min-h-11 px-1 uppercase transition-opacity ${
+            className={`flex min-h-11 min-w-11 items-center justify-center uppercase transition-opacity ${
               locale === l ? "font-bold opacity-100" : "opacity-50 hover:opacity-80"
             }`}
           >

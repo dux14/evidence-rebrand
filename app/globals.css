@@ -90,6 +90,12 @@ body {
   html { scroll-behavior: smooth; }
 }
 
+/* El preflight de Tailwind v4 deja cursor:default en botones — restaurar
+   la affordance de click en todos los interactivos habilitados. */
+button:not(:disabled) {
+  cursor: pointer;
+}
+
 /* ───────────────────────────────────────────────────────────────
    typographic utilities
    ─────────────────────────────────────────────────────────────── */
